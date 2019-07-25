@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/EMS-Backend/.vs
+/EMS-Backend/EMS-Backend/bin/Debug/netcoreapp2.2
+/EMS-Backend/EMS-Backend/obj
