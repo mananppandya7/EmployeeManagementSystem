@@ -1,0 +1,427 @@
+<section class="forms">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-close">
+                <div class="dropdown">
+                    <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                    <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#"
+                            class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#"
+                            class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">Add Employee</h3>
+            </div>
+            <div class="card-body">
+
+                <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Firstname<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <input type="text" formControlName="firstName" class="form-control"
+                                            placeholder="Enter Firstname">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Lastname<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <input type="text" formControlName="lastName" class="form-control"
+                                            placeholder="Enter Lastname">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('firstName').valid && employeeForm.get('firstName').touched"
+                                        class="help-block">Please Enter Your FirstName !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('lastName').valid && employeeForm.get('lastName').touched"
+                                        class="help-block">Please Enter Your LastName !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Father's Name<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <input type="text" formControlName="fatherName" class="form-control"
+                                            placeholder="Enter Father's Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Email<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-at"></i></div>
+                                        </div>
+                                        <input type="text" formControlName="email" class="form-control"
+                                            placeholder="Enter Email Address">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('fatherName').valid && employeeForm.get('fatherName').touched"
+                                        class="help-block">Please Enter Your Father's Name !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span *ngIf="!employeeForm.get('email').valid && employeeForm.get('email').touched"
+                                        class="help-block">Please Enter Your Email Address !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Date of Birth (DOB)<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                        <input type="date" formControlName="dateOfBirth" class="form-control pointer"
+                                            placeholder="Enter DOB">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Date of Joining (DOJ)<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                        <input type="date" formControlName="dateOfJoining" class="form-control pointer"
+                                            placeholder="Enter DOJ">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('dateOfBirth').valid && employeeForm.get('dateOfBirth').touched"
+                                        class="help-block">Please Enter Your Date Of Birth !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('dateOfJoining').valid && employeeForm.get('dateOfJoining').touched"
+                                        class="help-block">Please Enter Your Date Of Joining !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Department<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-building"></i></div>
+                                        </div>
+                                        <!--DropDown-->
+                                        <select class="form-control pointer" formControlName="department"
+                                            (change)="onDepartmentChange($event, $event.target.value)">
+                                            <option value="0">-- Select --</option>
+                                            <option *ngFor="let dept of departments" value="{{ dept.departmentId }}">
+                                                {{ dept.departmentName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Designation<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-plane"></i></div>
+                                        </div>
+                                        <!--DropDown-->
+                                        <select class="form-control pointer" formControlName="designation">
+                                            <option value="0">-- Select --</option>
+
+                                            <option *ngFor="let designation of designations"
+                                                value="{{ designation.designationId }}">
+                                                {{ designation.designationName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('department').valid && employeeForm.get('department').touched"
+                                        class="help-block">Please Select Department !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('designation').valid && employeeForm.get('designation').touched"
+                                        class="help-block">Please Select Designation !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Address<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-map-marker"></i></div>
+                                        </div>
+                                        <textarea formControlName="address" class="form-control" rows="2"
+                                            placeholder="Enter Address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('address').valid && employeeForm.get('address').touched"
+                                        class="help-block">Please Enter Your Address !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>State<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-flag"></i></div>
+                                        </div>
+                                        <!--DropDown-->
+                                        <select class="form-control pointer" formControlName="state">
+                                            <option value="0">-- Select --</option>
+                                            <option *ngFor="let state of states" value="{{ state.stateId }}">
+                                                {{ state.stateName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>City<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-building"></i></div>
+                                        </div>
+                                        <input type="text" formControlName="city" class="form-control"
+                                            placeholder="Enter City">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span *ngIf="!employeeForm.get('state').valid && employeeForm.get('state').touched"
+                                        class="help-block">Please Select State !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span *ngIf="!employeeForm.get('city').valid && employeeForm.get('city').touched"
+                                        class="help-block">Please Enter Your City !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Postcode<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><img src="../../../assets/img/postcode.png">
+                                            </div>
+                                        </div>
+                                        <input type="number" formControlName="postCode" class="form-control"
+                                            placeholder="Enter Postcode">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Contact No.<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-phone"></i></div>
+                                        </div>
+                                        <input type="number" formControlName="contactNumber" class="form-control"
+                                            placeholder="Enter Contact No.">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('postCode').valid && employeeForm.get('postCode').touched"
+                                        class="help-block">Please Enter Your PostCode Number !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('contactNumber').valid && employeeForm.get('contactNumber').touched"
+                                        class="help-block">Please Enter Your Contact Number !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Gender<span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <!--Radio button-->
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input pointer" id="male"
+                                                    name="groupOfDefaultRadios">
+                                                <label class="custom-control-label" for="male">Male</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <!--Radio button-->
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" class="custom-control-input pointer" id="female"
+                                                    name="groupOfDefaultRadios">
+                                                <label class="custom-control-label" for="female">Female</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Marital Status<span>*</span></label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <!--Radio button-->
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input pointer" id="mariad"
+                                                    name="inlineDefaultRadiosExample">
+                                                <label class="custom-control-label" for="mariad">Mariad</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <!--Radio button-->
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input pointer" id="unmariad"
+                                                    name="inlineDefaultRadiosExample">
+                                                <label class="custom-control-label" for="unmariad">Unmariad</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('Gender').valid && employeeForm.get('Gender').touched"
+                                        class="help-block">Please Select Your Gender !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('mariad').valid && employeeForm.get('mariad').touched"
+                                        class="help-block">Please Select Your Mariad Status !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--File upload-->
+                                    <div class="input-group mb-2">
+                                        <p class="mt-4"><input type="file" formControlName="image" class="pointer"></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Blood Group<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><img src="../../../assets/img/bloodgroup.png">
+                                            </div>
+                                        </div>
+                                        <!--Dropdown-->
+                                        <select class="form-control pointer" formControlName="bloodGroup">
+                                            <option value="">-- Select --</option>
+                                            <option *ngFor="let bloodgroup of bloodgroups"
+                                                value="{{ bloodgroup.bloodGroupId }}">{{ bloodgroup.bloodGroupName }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--For Firstname and Lastname Validation-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span *ngIf="!employeeForm.get('image').valid && employeeForm.get('image').touched"
+                                        class="help-block">Please Select Your Image !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span
+                                        *ngIf="!employeeForm.get('bloodGroup').valid && employeeForm.get('bloodGroup').touched"
+                                        class="help-block">Please Select Your Blood Group !</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Identity Type<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                                        </div>
+                                        <!--Dropdown-->
+                                        <select class="form-control pointer" formControlName="identityType"
+                                            (change)="onIdentityChange($event, $event.target.value)">
+                                            <option value="0">-- Select --</option>
+                                            <option value="1">Aadhaar Card</option>
+                                            <option value="2">License</option>
+                                            <option value="3">PAN Card</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6" *ngIf="identityType">
+                                    <label>{{identityType}}<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-id-badge"></i></div>
+                                        </div>
+                                        <input type="text" formControlName="identityNumber" class="form-control"
+                                            placeholder="Enter {{identityType}} Number">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary pointer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
