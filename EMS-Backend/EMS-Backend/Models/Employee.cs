@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EMS_Backend.Model
+namespace EMS_Backend.Models
 {
     public class Employee
     {

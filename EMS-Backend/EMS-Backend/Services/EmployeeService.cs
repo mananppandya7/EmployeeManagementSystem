@@ -1,6 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using EMS_Backend.Models;
 using EMS_Backend.Interface;
-using EMS_Backend.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

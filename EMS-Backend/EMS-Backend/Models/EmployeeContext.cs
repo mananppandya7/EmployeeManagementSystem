@@ -1,11 +1,11 @@
-﻿using EMS_Backend.Model;
+﻿using EMS_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmployeeManagement.Models
+namespace EMS_Backend.Models
 {
     public class EmployeeContext : DbContext
     {
