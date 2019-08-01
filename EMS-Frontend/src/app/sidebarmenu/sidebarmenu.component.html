@@ -1,0 +1,15 @@
+<nav class="side-navbar">
+  <!-- Sidebar Header-->
+  <div class="sidebar-header d-flex align-items-center">
+    <div class="avatar"><img src="../../assets/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+    <div class="title">
+      <h1 class="h4">Mark Stephen</h1>
+      <p>Web Designer</p>
+    </div>
+  </div>
+  <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+  <ul class="list-unstyled">
+    <li routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}" class="pointer" (click)="onMenuClick('Dashboard')"><a routerLink=''><i class="icon-home"></i>Dashboard</a></li>
+    <li routerLinkActive='active' class="pointer" (click)="onMenuClick('Employee')"><a routerLink='/employee'><i class="fa fa-user"></i>Employee</a></li>
+  </ul>
+</nav>
