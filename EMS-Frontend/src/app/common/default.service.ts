@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject, from } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 import { Department } from '../models/department'
 import { Designation } from '../models/designation'
 import { State } from '../models/state';
 import { Bloodgroup } from '../models/bloodgroup';
+import { Identitytype } from '../models/identitytype';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ import { Bloodgroup } from '../models/bloodgroup';
 export class DefaultService {
 
   designations: Designation[];
-  pageHeaderChanged = new Subject<string>();
+  pageHeaderChanged = new BehaviorSubject('Dashboard');
 
   constructor() { }
 
@@ -27,6 +29,12 @@ export class DefaultService {
     new Department(1, "Finance"),
     new Department(2, "Human Resource"),
     new Department(3, "Information Technology")
+  ];
+
+  identitytype: Identitytype[] = [
+    new Identitytype(1, 'Aadhaar Card'),
+    new Identitytype(2, 'License'),
+    new Identitytype(3, 'PAN Card'),
   ];
 
   // States
@@ -58,13 +66,12 @@ export class DefaultService {
     new Bloodgroup(1, "A+"),
     new Bloodgroup(2, "A-"),
     new Bloodgroup(3, "AB+"),
-    new Bloodgroup(8, "AB-"),
-    new Bloodgroup(4, "B+"),
-    new Bloodgroup(5, "B-"),
-    new Bloodgroup(6, "O+"),
-    new Bloodgroup(7, "O-")
+    new Bloodgroup(4, "AB-"),
+    new Bloodgroup(5, "B+"),
+    new Bloodgroup(6, "B-"),
+    new Bloodgroup(7, "O+"),
+    new Bloodgroup(8, "O-")
   ];
-
 
   // Get Designations
   getDesignations(event, index) {
@@ -80,19 +87,19 @@ export class DefaultService {
       case '1': {
         this.designations = [
           new Designation(1, "HR Assistant"),
-          new Designation(3, "HR Director"),
-          new Designation(2, "HR Generalist"),
-          new Designation(3, "HR Manager"),
-          new Designation(4, "HR VP")
+          new Designation(2, "HR Director"),
+          new Designation(3, "HR Generalist"),
+          new Designation(4, "HR Manager"),
+          new Designation(5, "HR VP")
         ];
         break;
       }
       case '2': {
         this.designations = [
-          new Designation(4, "Director Finance"),
-          new Designation(1, "Finance Assistant"),
+          new Designation(1, "Director Finance"),
+          new Designation(2, "Finance Assistant"),
           new Designation(3, "Manager Finance"),
-          new Designation(2, "Senior Officer Finance"),
+          new Designation(4, "Senior Officer Finance"),
         ];
         break;
       }
@@ -112,11 +119,27 @@ export class DefaultService {
     return this.designations;
   }
 
-  loadDynamicHeader() {
-    let pageHeader = window.location.pathname.replace('/', '');
-    if (pageHeader === '')
-      pageHeader = "Dashboard";
 
-    return pageHeader.charAt(0).toUpperCase() + pageHeader.substring(1);
+  getIdentityType(index: number) {
+    return this.identitytype.find(x => x.id === index).name;
   }
+
+  // To Parse Date
+  parseDate(date: any) {
+    const currentDate = new Date(date);
+    return currentDate.toISOString().substring(0, 10);
+  }
+
+  // To Parse Date using Pipes
+  parseDate2(date: any) {
+    let dp = new DatePipe(navigator.language);
+    let p = 'y-MM-dd'; // YYYY-MM-DD
+    let dtr = dp.transform(new Date(date), p);
+    return dtr;
+  }
+
+  // Get today's date
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
 }

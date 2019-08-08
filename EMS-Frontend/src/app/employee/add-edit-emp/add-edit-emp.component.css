@@ -16,6 +16,15 @@ textarea.ng-invalid.ng-touched{
     border: 1px solid red;
 }
 
-div span{
+.red-div{
+    border: 1px solid red;
+}
+
+.red-icon{
     color: red;
+}
+
+ div span{
+    color:#dc3545;
+    font-size: 80%;
 }

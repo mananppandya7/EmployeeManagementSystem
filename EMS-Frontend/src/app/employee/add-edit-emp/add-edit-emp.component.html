@@ -20,16 +20,24 @@
                     <div class="form-group row">
                         <div class="col-md-12">
 
+                            <input type="hidden" formControlName="employeeId">
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Firstname<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.firstName.errors">
+                                                <i class="fa fa-user"
+                                                    [class.red-icon]="submitted && f.firstName.errors"></i></div>
                                         </div>
                                         <input type="text" formControlName="firstName" class="form-control"
-                                            placeholder="Enter Firstname">
-
+                                            placeholder="Enter Firstname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -37,25 +45,18 @@
                                     <label>Lastname<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.lastName.errors">
+                                                <i class="fa fa-user"
+                                                    [class.red-icon]="submitted && f.lastName.errors"></i></div>
                                         </div>
                                         <input type="text" formControlName="lastName" class="form-control"
-                                            placeholder="Enter Lastname">
+                                            placeholder="Enter Lastname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('firstName').valid && employeeForm.get('firstName').touched"
-                                        class="help-block">Please Enter Your FirstName !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('lastName').valid && employeeForm.get('lastName').touched"
-                                        class="help-block">Please Enter Your LastName !</span>
                                 </div>
                             </div>
 
@@ -64,35 +65,37 @@
                                     <label>Father's Name<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.fatherName.errors">
+                                                <i class="fa fa-user"
+                                                    [class.red-icon]="submitted && f.fatherName.errors"></i></div>
                                         </div>
                                         <input type="text" formControlName="fatherName" class="form-control"
-                                            placeholder="Enter Father's Name">
+                                            placeholder="Enter Father's Name"
+                                            [ngClass]="{ 'is-invalid': submitted && f.fatherName.errors }">
+                                        <div *ngIf="submitted && f.fatherName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.fatherName.errors.required">Father's Name is required</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label>Email<span>*</span></label>
-                                    <div class="input-group mb-2">
+                                    <div class="input-group mb-2"
+                                        [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-at"></i></div>
+                                            <div class="input-group-text" [class.red-div]="submitted && f.email.errors">
+                                                <i class="fa fa-at" [class.red-icon]="submitted && f.email.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="text" formControlName="email" class="form-control"
-                                            placeholder="Enter Email Address">
+                                            placeholder="Enter Email Address"
+                                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">Email address is required</div>
+                                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('fatherName').valid && employeeForm.get('fatherName').touched"
-                                        class="help-block">Please Enter Your Father's Name !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span *ngIf="!employeeForm.get('email').valid && employeeForm.get('email').touched"
-                                        class="help-block">Please Enter Your Email Address !</span>
                                 </div>
                             </div>
 
@@ -101,10 +104,17 @@
                                     <label>Date of Birth (DOB)<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.dateOfBirth.errors">
+                                                <i class="fa fa-calendar"
+                                                    [class.red-icon]="submitted && f.dateOfBirth.errors"></i></div>
                                         </div>
                                         <input type="date" formControlName="dateOfBirth" class="form-control pointer"
-                                            placeholder="Enter DOB">
+                                            placeholder="Enter DOB" [max]="defaultService.getToday()"
+                                            [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }">
+                                        <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                                            <div *ngIf="f.dateOfBirth.errors.required">Date Of Birth is required</div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -112,25 +122,19 @@
                                     <label>Date of Joining (DOJ)<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.dateOfJoining.errors">
+                                                <i class="fa fa-calendar"
+                                                    [class.red-icon]="submitted && f.dateOfJoining.errors"></i></div>
                                         </div>
                                         <input type="date" formControlName="dateOfJoining" class="form-control pointer"
-                                            placeholder="Enter DOJ">
+                                            placeholder="Enter DOJ" [max]="defaultService.getToday()"
+                                            [ngClass]="{ 'is-invalid': submitted && f.dateOfJoining.errors }">
+                                        <div *ngIf="submitted && f.dateOfJoining.errors" class="invalid-feedback">
+                                            <div *ngIf="f.dateOfJoining.errors.required">Date Of Joining is required
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('dateOfBirth').valid && employeeForm.get('dateOfBirth').touched"
-                                        class="help-block">Please Enter Your Date Of Birth !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('dateOfJoining').valid && employeeForm.get('dateOfJoining').touched"
-                                        class="help-block">Please Enter Your Date Of Joining !</span>
                                 </div>
                             </div>
 
@@ -139,15 +143,23 @@
                                     <label>Department<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-building"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.department.errors">
+                                                <i class="fa fa-building"
+                                                    [class.red-icon]="submitted && f.department.errors"></i></div>
                                         </div>
-                                        <!--DropDown-->
+
                                         <select class="form-control pointer" formControlName="department"
-                                            (change)="onDepartmentChange($event, $event.target.value)">
-                                            <option value="0">-- Select --</option>
+                                            (change)="onDepartmentChange($event, $event.target.value)"
+                                            [ngClass]="{ 'is-invalid': submitted && f.department.errors }">
+                                            <option value="">-- Select --</option>
                                             <option *ngFor="let dept of departments" value="{{ dept.departmentId }}">
                                                 {{ dept.departmentName }}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.department.errors" class="invalid-feedback">
+                                            <div *ngIf="f.department.errors.required">Department is required
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -155,31 +167,25 @@
                                     <label>Designation<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-plane"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.designation.errors">
+                                                <i class="fa fa-plane"
+                                                    [class.red-icon]="submitted && f.designation.errors"></i></div>
                                         </div>
-                                        <!--DropDown-->
-                                        <select class="form-control pointer" formControlName="designation">
-                                            <option value="0">-- Select --</option>
+
+                                        <select class="form-control pointer" formControlName="designation"
+                                            [ngClass]="{ 'is-invalid': submitted && f.designation.errors }">
+                                            <option value="">-- Select --</option>
 
                                             <option *ngFor="let designation of designations"
                                                 value="{{ designation.designationId }}">
                                                 {{ designation.designationName }}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                                            <div *ngIf="f.designation.errors.required">Designation is required
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('department').valid && employeeForm.get('department').touched"
-                                        class="help-block">Please Select Department !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('designation').valid && employeeForm.get('designation').touched"
-                                        class="help-block">Please Select Designation !</span>
                                 </div>
                             </div>
 
@@ -188,20 +194,19 @@
                                     <label>Address<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-map-marker"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.address.errors">
+                                                <i class="fa fa-map-marker"
+                                                    [class.red-icon]="submitted && f.address.errors"></i></div>
                                         </div>
                                         <textarea formControlName="address" class="form-control" rows="2"
-                                            placeholder="Enter Address"></textarea>
+                                            placeholder="Enter Address"
+                                            [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
+                                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                            <div *ngIf="f.address.errors.required">Address is required
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('address').valid && employeeForm.get('address').touched"
-                                        class="help-block">Please Enter Your Address !</span>
                                 </div>
                             </div>
 
@@ -210,14 +215,21 @@
                                     <label>State<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-flag"></i></div>
+                                            <div class="input-group-text" [class.red-div]="submitted && f.state.errors">
+                                                <i class="fa fa-flag"
+                                                    [class.red-icon]="submitted && f.state.errors"></i></div>
                                         </div>
-                                        <!--DropDown-->
-                                        <select class="form-control pointer" formControlName="state">
-                                            <option value="0">-- Select --</option>
+
+                                        <select class="form-control pointer" formControlName="state"
+                                            [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                                            <option value="">-- Select --</option>
                                             <option *ngFor="let state of states" value="{{ state.stateId }}">
                                                 {{ state.stateName }}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                            <div *ngIf="f.state.errors.required">State is required
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -225,23 +237,18 @@
                                     <label>City<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-building"></i></div>
+                                            <div class="input-group-text" [class.red-div]="submitted && f.city.errors">
+                                                <i class="fa fa-building"
+                                                    [class.red-icon]="submitted && f.city.errors"></i></div>
                                         </div>
                                         <input type="text" formControlName="city" class="form-control"
-                                            placeholder="Enter City">
+                                            placeholder="Enter City"
+                                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                            <div *ngIf="f.city.errors.required">City is required
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span *ngIf="!employeeForm.get('state').valid && employeeForm.get('state').touched"
-                                        class="help-block">Please Select State !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span *ngIf="!employeeForm.get('city').valid && employeeForm.get('city').touched"
-                                        class="help-block">Please Enter Your City !</span>
                                 </div>
                             </div>
 
@@ -250,11 +257,19 @@
                                     <label>Postcode<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><img src="../../../assets/img/postcode.png">
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.postcode.errors">
+                                                <i class="fa fa-address-card"
+                                                    [class.red-icon]="submitted && f.postcode.errors"></i>
                                             </div>
                                         </div>
-                                        <input type="number" formControlName="postCode" class="form-control"
-                                            placeholder="Enter Postcode">
+                                        <input type="text" formControlName="postcode" class="form-control"
+                                            placeholder="Enter Postcode"
+                                            [ngClass]="{ 'is-invalid': submitted && f.postcode.errors }">
+                                        <div *ngIf="submitted && f.postcode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.postcode.errors.required">Postcode is required
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -262,25 +277,20 @@
                                     <label>Contact No.<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-phone"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.contactNumber.errors">
+                                                <i class="fa fa-phone"
+                                                    [class.red-icon]="submitted && f.contactNumber.errors"></i></div>
                                         </div>
                                         <input type="number" formControlName="contactNumber" class="form-control"
-                                            placeholder="Enter Contact No.">
+                                            placeholder="Enter Contact No."
+                                            [ngClass]="{ 'is-invalid': submitted && f.contactNumber.errors }">
+                                        <div *ngIf="submitted && f.contactNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contactNumber.errors.required">Contact Number is required
+                                            </div>
+                                            <div *ngIf="f.contactNumber.errors?.Max"> Max 10 digit </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('postCode').valid && employeeForm.get('postCode').touched"
-                                        class="help-block">Please Enter Your PostCode Number !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('contactNumber').valid && employeeForm.get('contactNumber').touched"
-                                        class="help-block">Please Enter Your Contact Number !</span>
                                 </div>
                             </div>
 
@@ -288,23 +298,18 @@
                                 <div class="col-md-6">
                                     <label>Gender<span>*</span></label>
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <!--Radio button-->
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input pointer" id="male"
-                                                    name="groupOfDefaultRadios">
-                                                <label class="custom-control-label" for="male">Male</label>
-                                            </div>
-                                        </div>
+                                        <div class="col-md-3" *ngFor="let gender of genderList">
 
-                                        <div class="col-md-3">
-                                            <!--Radio button-->
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input pointer" id="female"
-                                                    name="groupOfDefaultRadios">
-                                                <label class="custom-control-label" for="female">Female</label>
+                                                <input type="radio" value={{gender}} formControlName="gender"
+                                                    class="radio-template"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                                {{gender}}
                                             </div>
                                         </div>
+                                    </div>
+                                    <div *ngIf="submitted">
+                                        <span *ngIf="!f.gender.valid">Gender is required</span>
                                     </div>
                                 </div>
 
@@ -312,43 +317,30 @@
                                     <label>Marital Status<span>*</span></label>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <!--Radio button-->
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input pointer" id="mariad"
-                                                    name="inlineDefaultRadiosExample">
-                                                <label class="custom-control-label" for="mariad">Mariad</label>
+                                            <div class="custom-control custom-radio">
+                                                <input id="married" type="radio" class="radio-template" value=false
+                                                    formControlName="maritalStatus">
+                                                <label for="married">Married</label>
                                             </div>
                                         </div>
-
                                         <div class="col-md-3">
-                                            <!--Radio button-->
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input pointer" id="unmariad"
-                                                    name="inlineDefaultRadiosExample">
-                                                <label class="custom-control-label" for="unmariad">Unmariad</label>
+                                            <div class="custom-control custom-radio">
+                                                <input id="Unmarried" type="radio" class="radio-template" value=true
+                                                    formControlName="maritalStatus"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.maritalStatus.errors }">
+                                                <label for="Unmarried">Unmarried</label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div *ngIf="submitted">
+                                        <span *ngIf="!f.maritalStatus.valid">MaritalStatus is required</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!--For Firstname and Lastname Validation-->
                             <div class="row">
                                 <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('Gender').valid && employeeForm.get('Gender').touched"
-                                        class="help-block">Please Select Your Gender !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('mariad').valid && employeeForm.get('mariad').touched"
-                                        class="help-block">Please Select Your Mariad Status !</span>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!--File upload-->
                                     <div class="input-group mb-2">
                                         <p class="mt-4"><input type="file" formControlName="image" class="pointer"></p>
                                     </div>
@@ -358,30 +350,25 @@
                                     <label>Blood Group<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><img src="../../../assets/img/bloodgroup.png">
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.bloodGroup.errors">
+                                                <i class="fa fa-bold"
+                                                    [class.red-icon]="submitted && f.bloodGroup.errors"></i>
                                             </div>
                                         </div>
-                                        <!--Dropdown-->
-                                        <select class="form-control pointer" formControlName="bloodGroup">
+
+                                        <select class="form-control pointer" formControlName="bloodGroup"
+                                            [ngClass]="{ 'is-invalid': submitted && f.bloodGroup.errors }">
                                             <option value="">-- Select --</option>
                                             <option *ngFor="let bloodgroup of bloodgroups"
                                                 value="{{ bloodgroup.bloodGroupId }}">{{ bloodgroup.bloodGroupName }}
                                             </option>
                                         </select>
+                                        <div *ngIf="submitted && f.bloodGroup.errors" class="invalid-feedback">
+                                            <div *ngIf="f.bloodGroup.errors.required">Blood Group is required
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!--For Firstname and Lastname Validation-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <span *ngIf="!employeeForm.get('image').valid && employeeForm.get('image').touched"
-                                        class="help-block">Please Select Your Image !</span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span
-                                        *ngIf="!employeeForm.get('bloodGroup').valid && employeeForm.get('bloodGroup').touched"
-                                        class="help-block">Please Select Your Blood Group !</span>
                                 </div>
                             </div>
 
@@ -390,27 +377,42 @@
                                     <label>Identity Type<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.identityType.errors">
+                                                <i class="fa fa-address-card"
+                                                    [class.red-icon]="submitted && f.identityType.errors"></i></div>
                                         </div>
-                                        <!--Dropdown-->
+
                                         <select class="form-control pointer" formControlName="identityType"
-                                            (change)="onIdentityChange($event, $event.target.value)">
-                                            <option value="0">-- Select --</option>
-                                            <option value="1">Aadhaar Card</option>
-                                            <option value="2">License</option>
-                                            <option value="3">PAN Card</option>
+                                            (change)="onIdentityChange($event, $event.target.value)"
+                                            [ngClass]="{ 'is-invalid': submitted && f.identityType.errors }">
+                                            <option value="">-- Select --</option>
+                                            <option *ngFor="let identity of identitytypes" value="{{ identity.id }}">
+                                                {{ identity.name }}</option>
                                         </select>
+                                        <div *ngIf="submitted && f.identityType.errors" class="invalid-feedback">
+                                            <div *ngIf="f.identityType.errors.required">Identity Type is required
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6" *ngIf="identityType">
-                                    <label>{{identityType}}<span>*</span></label>
+                                <div class="col-md-6" *ngIf="identityType || employeeId > 0">
+                                    <label>{{ identityType }}<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-id-badge"></i></div>
+                                            <div class="input-group-text"
+                                                [class.red-div]="submitted && f.identityNumber.errors">
+                                                <i class="fa fa-id-badge"
+                                                    [class.red-icon]="submitted && f.identityNumber.errors"></i></div>
                                         </div>
                                         <input type="text" formControlName="identityNumber" class="form-control"
-                                            placeholder="Enter {{identityType}} Number">
+                                            placeholder="Enter {{identityType}} Number"
+                                            [ngClass]="{ 'is-invalid': submitted && f.identityNumber.errors }">
+                                        <div *ngIf="submitted && f.identityNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.identityNumber.errors.required">Identity Number is required
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

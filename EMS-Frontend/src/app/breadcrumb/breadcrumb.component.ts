@@ -16,14 +16,12 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   constructor(private defaultService: DefaultService) { }
 
   ngOnInit() {
-
     this.subscription = this.defaultService.pageHeaderChanged.subscribe(breadcrumb => {
       if (breadcrumb !== 'Dashboard')
         this.breadcrumb = breadcrumb;
       else
         this.breadcrumb = null;
     });
-
   }
 
   ngOnDestroy() {

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DefaultService } from '../common/default.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+
+import { DefaultService } from '../common/default.service';
 
 @Component({
   selector: 'app-page-header',
@@ -14,23 +14,22 @@ export class PageHeaderComponent implements OnInit, OnDestroy {
   pageHeader: string;
   private subscription: Subscription;
 
-  constructor(private defaultService: DefaultService, private title: Title) {
-    this.pageHeader = this.defaultService.loadDynamicHeader();
-    this.title.setTitle('EMS-' + this.pageHeader);
-  }
+  constructor(private defaultService: DefaultService, private title: Title) { }
 
   ngOnInit() {
     this.subscription = this.defaultService.pageHeaderChanged.subscribe(header => {
       if (header) {
         this.pageHeader = header;
       } else {
-        // Clear page header (e.g. Dashboard, Employee) if empty header received
-        this.pageHeader = null;
+        // Set default header to 'Dashboard'
+        this.pageHeader = 'Dashboard';
       }
+      // Set title
+      this.title.setTitle('EMS-' + this.pageHeader);
     });
   }
 
-  //For destroy subscription
+  // Destroy subscription
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

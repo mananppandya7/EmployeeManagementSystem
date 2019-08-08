@@ -12,12 +12,13 @@ export class Employee {
         public address: string,
         public state: string,
         public city: string,
-        public postCode: number,
+        public postcode: string,
         public contactNumber: number,
-        public gender: boolean,
+        public gender: String,
         public maritalStatus: boolean,
-        public image: File,
+        public image: string,
         public bloodGroup: string,
         public identityType: string,
-        public identityNumber: string) { }
+        public identityNumber: string
+    ) { }
 }
