@@ -9,6 +9,7 @@ namespace EMS_Backend.Models
 {
     public class Employee
     {
+        [Key]
         public int EmployeeId { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
@@ -45,8 +46,8 @@ namespace EMS_Backend.Models
         public string City { get; set; }
 
         [Required(ErrorMessage = "Please enter your Pin Code")]
-        [RegularExpression(@"^[0-9]{6,8}$",ErrorMessage = "Invalid Zip")]
-        public int Postcode { get; set; }
+        [RegularExpression(@"^[0-9]{6,8}$", ErrorMessage = "Invalid Zip")]
+        public string Postcode { get; set; }
 
         [Required(ErrorMessage = "Please enter your Mobile number")]
         public double ContactNumber { get; set; }

@@ -30,10 +30,25 @@ namespace EMS_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddScoped<IEmployeeService, EmployeeService>();
 
-            services.AddDbContext<EmployeeContext>(options =>
-                        options.UseSqlite("Data Source=Employee.db"));
+            services.AddDbContext<EmployeeContext>(option =>
+                        option.UseSqlServer(Configuration.GetConnectionString("EmployeeDatabase")));
+
+            // Uncomment below line to use SQL Lite database.
+            //services.AddDbContext<EmployeeContext>(options =>
+            //            options.UseSqlite(Configuration.GetConnectionString("EmployeeContext")));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {

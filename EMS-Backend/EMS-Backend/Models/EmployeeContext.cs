@@ -24,8 +24,12 @@ namespace EMS_Backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Data Source=Employee.db");
+                optionsBuilder.UseSqlServer("Server=192.168.0.104,49170;Database=EMS;User Id=sa;Password=sa;");
+                
+                // Uncomment below line to use SQL Lite database.
+                //optionsBuilder.UseSqlite("Data Source=Employee.db");
             }
         }
     }
 }
+
