@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/*==========================================================================================
+AUTHOR              :   Manan Pandya
+CREATED ON          :   Aug 1, 2019
+LAST MODIFIED ON    :   -
+DESCRIPTION         :   Employee Controller
+============================================================================================
+REVISION HISTORY : 
+Name:                 Date:                 Description
+============================================================================================*/
+
 using System.Threading.Tasks;
 using EMS_Backend.Interface;
 using EMS_Backend.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

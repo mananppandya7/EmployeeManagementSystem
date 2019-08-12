@@ -32,6 +32,7 @@ namespace EMS_Backend
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IDocumentService, DocumentService>();
 
             services.AddDbContext<EmployeeContext>(option =>
                         option.UseSqlServer(Configuration.GetConnectionString("EmployeeDatabase")));

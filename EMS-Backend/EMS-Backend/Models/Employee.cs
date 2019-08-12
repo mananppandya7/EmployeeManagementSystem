@@ -1,4 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿/*==========================================================================================
+AUTHOR              :   Manan Pandya
+CREATED ON          :   Aug 8, 2019
+LAST MODIFIED ON    :   -
+DESCRIPTION         :   Employee Model
+============================================================================================
+REVISION HISTORY : 
+Name:                 Date:                 Description
+============================================================================================*/
+
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
