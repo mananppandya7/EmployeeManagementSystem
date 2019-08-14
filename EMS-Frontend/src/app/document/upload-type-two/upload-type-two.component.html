@@ -1,0 +1,124 @@
+<section class="forms">
+    <div class="container-fluid">
+
+        <div class="card">
+
+            <div class="card-close">
+                <div class="dropdown">
+                    <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                    <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                        <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                        <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">Image Upload With Form</h3>
+            </div>
+
+            <div class="card-body">
+
+                <!-- Template-Driven Form -->
+                <form #imageUploadForm="ngForm" (ngSubmit)="onSubmit(imageUploadForm)">
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+
+                            <!-- UI for FirstName & LastName -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Firstname<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <input type="text" name="firstName" class="form-control" #fn="ngModel"
+                                            placeholder="Enter Firstname" ngModel required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Lastname<span>*</span></label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <input type="text" name="lastName" class="form-control" #ln="ngModel"
+                                            placeholder="Enter Lastname" ngModel required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Validations for FirstName & LastName -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span *ngIf="!fn.valid && fn.touched" class="help-block">Please Enter Your FirstName
+                                        !</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span *ngIf="!ln.valid && ln.touched" class="help-block">Please Enter Your LastName
+                                        !</span>
+                                </div>
+                            </div>
+
+                            <!-- UI For Image Upload -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Profile Image<span>*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-upload"></i></div>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" id="inputGroupFile01" class="custom-file-input"
+                                                name="profileImage" accept="image/*" (change)="onFileSelected($event)"
+                                                style="cursor: pointer;" ngModel required>
+                                            <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PREVIEW SELECTED IMAGE -->
+                            <div class="col-md-12" *ngIf="selectedFile != null">
+                                <div class="row">
+                                    <h2 class="ml-2" style="margin-right: 50px;">Preview</h2>
+                                    <div>
+                                        <!-- ROUNDED-CIRCLE -->
+                                        <img [src]="imageURL" class="rounded-circle img-preview mr-5">
+
+                                        <!-- ROUNDED -->
+                                        <img [src]="imageURL" class="rounded img-preview mr-5"
+                                            style="border-radius: 1.5rem !important;">
+
+                                        <!-- BORDER BORDER-SUCCESS -->
+                                        <img [src]="imageURL" class="border border-success img-preview">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6" *ngIf="isValidFileSize || isValidFileType">
+                                    <span class="text-danger" style="margin-top: 10px;">{{errorMessage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT AND RESET BUTTONS -->
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary pointer"
+                            [disabled]="!imageUploadForm.valid"
+                            [ngStyle]="{'cursor': !imageUploadForm.valid || selectedFile == null ? 'not-allowed' : 'pointer'}">
+                        <input type="button" value="Reset" class="btn btn-secondary pointer ml-2"
+                            (click)="onReset(imageUploadForm)">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

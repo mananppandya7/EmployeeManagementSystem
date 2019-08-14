@@ -1,0 +1,21 @@
+.my-drop-zone {
+    color: #ccc;
+    border-style: dashed;
+    border-color: #ccc;
+    height: 200px; 
+    line-height: 200px;
+    text-align: center;
+}
+
+.nv-file-over { border: dotted 3px green; }
+
+.another-file-over-class { border: dotted 3px green; }
+
+.pointer {
+    cursor: pointer;
+}
+
+.img-preview {
+    height: 200px;
+    width:200px;
+}

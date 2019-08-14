@@ -1,0 +1,21 @@
+.row{
+    margin-top: 20px;
+}
+
+label span{
+    color: red;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+div span{
+    color: red;
+}
+
+.img-preview {
+    height: 200px;
+    width:200px;
+}

@@ -1,0 +1,249 @@
+<section class="forms">
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-close">
+                <div class="dropdown">
+                    <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                    <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                        <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                        <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">Upload Profile Image</h3>
+            </div>
+
+            <!-- SINGLE FILE UPLOAD -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-upload"></i></span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" id="inputGroupFile01" class="custom-file-input pointer"
+                                            (change)="onFileSelected($event)" accept="image/*">
+                                        <label class="custom-file-label" for="inputGroupFile01">{{fileName}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UPLOAD AND CANCEL BUTTON FOR SINGLE FILE UPLOAD -->
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success mr-2" (click)="onUploadImage()"
+                                    [ngStyle]="{'cursor':selectedFile == null ? 'not-allowed' : 'pointer'}"
+                                    [disabled]="selectedFile == null"> <span class="fa fa-upload"></span>
+                                    Upload</button>
+                                <button type="button" class="btn btn-danger"
+                                    [ngStyle]="{'cursor':selectedFile == null ? 'not-allowed' : 'pointer'}"
+                                    [disabled]="selectedFile == null" (click)="onCancelFile()"> <span
+                                        class="fa fa-trash"></span>
+                                    Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- VALIDATE UPLOADED FILE AND DISPLAY ERROR -->
+                        <div class="row">
+                            <div class="col-md-6" *ngIf="isValidFileSize || isValidFileType">
+                                <span class="text-danger" style="margin-top: 10px;">{{ errorMessage }}</span>
+                            </div>
+                        </div>
+
+                        <!-- IMAGE PREVIEW -->
+                        <div class="row mt-3" *ngIf="selectedFile != null">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <h2 class="ml-3" style="margin-right: 50px;">Preview</h2>
+                                    <div>
+                                        <!-- ROUNDED-CIRCLE -->
+                                        <img [src]="imageURL" class="rounded-circle mr-5 img-preview">
+
+                                        <!-- ROUNDED -->
+                                        <img [src]="imageURL" class="rounded mr-5 img-preview"
+                                            style="border-radius: 1.5rem !important;">
+
+                                        <!-- BORDER -->
+                                        <img [src]="imageURL" class="border border-success img-preview">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MULTIPLE FILE UPLOAD USING NG2-FILE-UPLOAD -->
+
+        <div class="card">
+            <div class="card-close">
+                <div class="dropdown">
+                    <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                    <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#"
+                            class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#"
+                            class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">Upload Documents</h3>
+            </div>
+
+            <!-- NOTE FOR UPLOAD FILE -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <span style="font-weight: bold">NOTE:</span>
+                                    Only csv, txt, doc, docx, xls, xlsx, pdf Extension
+                                    Files are allowed AND File must be less than 5MB.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <!-- DROPZONE FOR UPLOAD FILE -->
+                            <div class="col-md-3">
+                                <input type="file" id="multiFile" multiple hidden="hidden" #multiFile>
+
+                                <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                                    (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
+
+                                    <span><i class="fa fa-upload" aria-hidden="true"></i> Drop your files here!</span>
+                                </div>
+                            </div>
+
+                            <!-- ACTIONS FOR UPLOADED FILES -->
+                            <div class="col-md-9 table-responsive">
+                                <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+                                <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th width="20%">Name</th>
+                                            <th width="10%">Size</th>
+                                            <th width="10%">Progress</th>
+                                            <th width="10%">Status</th>
+                                            <th width="50%">Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let item of uploader.queue">
+                                            <td><strong>{{ item?.file?.name }}</strong></td>
+                                            <td *ngIf="uploader.options.isHTML5" nowrap>
+                                                {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                                            </td>
+                                            <td *ngIf="uploader.options.isHTML5">
+                                                <div class="progress" style="margin-bottom: 0;">
+                                                    <div class="progress-bar" role="progressbar"
+                                                        [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                                </div>
+                                            </td>
+                                            <td class="text-left">
+                                                <span *ngIf="item.isSuccess">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </span>
+                                                <span *ngIf="item.isCancel">
+                                                    <i class="fa fa-ban"></i>
+                                                </span>
+                                                <span *ngIf="item.isError">
+                                                    <i class="fa fa-warning"></i>
+                                                </span>
+                                            </td>
+                                            <td nowrap>
+
+                                                <!-- FILE UPLOAD BUTTON -->
+                                                <button type="button" class="btn btn-success btn-xs mr-2"
+                                                    (click)="item.upload()"
+                                                    [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                                    <span class="fa fa-upload"></span> Upload
+                                                </button>
+
+                                                <!-- CANCEL FILE WHILE UPLOADING -->
+                                                <button type="button" class="btn btn-warning btn-xs mr-2"
+                                                    (click)="item.cancel()" [disabled]="!item.isUploading">
+                                                    <span class="fa fa-ban"></span> Cancel
+                                                </button>
+
+                                                <!-- REMOVE UPLOADED FILE FROM QUEUE -->
+                                                <button type="button" class="btn btn-danger btn-xs"
+                                                    (click)="item.remove()" [disabled]="item.isSuccess">
+                                                    <span class="fa fa-trash"></span> Remove
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div>
+
+                                    <!-- DISPLAY OVERALL PROGRESS FOR FILE UPLOAD -->
+                                    <div>
+                                        Queue progress:
+                                        <div class="progress mt-2 mb-3">
+                                            <div class="progress-bar" role="progressbar"
+                                                [ngStyle]="{ 'width': uploader.progress + '%' }">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- UPLOAD ALL SELECTED FILES -->
+                                    <button type="button" class="btn btn-success btn-s mr-2"
+                                        (click)="uploader.uploadAll()"
+                                        [disabled]="!uploader.getNotUploadedItems().length">
+                                        <span class="fa fa-upload"></span> Upload all
+                                    </button>
+
+                                    <!-- CANCEL ALL FILE WHILE UPLOADING -->
+                                    <button type="button" class="btn btn-warning btn-s mr-2"
+                                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                        <span class="fa fa-ban"></span> Cancel all
+                                    </button>
+
+                                    <!-- REMOVE ALL FILES FROM QUEUE -->
+                                    <button type="button" class="btn btn-danger btn-s" (click)="onClearQueue()"
+                                        [disabled]="!uploader.queue.length">
+                                        <span class="fa fa-trash"></span> Remove all
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VALIDATE UPLOADED FILE -->
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12" *ngIf="type2Validation">
+                                <p class="text-danger">{{ type2ErrorMessage }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
