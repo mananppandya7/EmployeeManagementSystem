@@ -14,6 +14,10 @@ using Microsoft.EntityFrameworkCore;
 using EMS_Backend.Interface;
 using EMS_Backend.Services;
 using EMS_Backend.Models;
+using System.Text;
+using JWT_Authentication.Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EMS_Backend
 {
@@ -33,6 +37,7 @@ namespace EMS_Backend
 
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddDbContext<EmployeeContext>(option =>
                         option.UseSqlServer(Configuration.GetConnectionString("EmployeeDatabase")));
@@ -61,6 +66,31 @@ namespace EMS_Backend
                     TermsOfService = "None",
                     Contact = new Contact() { Name = "EMS", Email = "", Url = "" }
                 });
+            });
+
+            // Configure strongly typed setting object.
+            var appsettingSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appsettingSection);
+
+            // Configure JWT authentication.
+            var appsettings = appsettingSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appsettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
         }
 
