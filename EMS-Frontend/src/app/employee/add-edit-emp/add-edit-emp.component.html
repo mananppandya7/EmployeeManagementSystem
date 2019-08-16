@@ -30,7 +30,8 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.firstName.errors">
                                                 <i class="fa fa-user"
-                                                    [class.red-icon]="submitted && f.firstName.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.firstName.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="text" formControlName="firstName" class="form-control"
                                             placeholder="Enter Firstname"
@@ -339,10 +340,24 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
 
+                                <!-- Profile Image Upload -->
+                                <div class="col-md-6">
+                                    <label>Image<span>*</span></label>
                                     <div class="input-group mb-2">
-                                        <p class="mt-4"><input type="file" formControlName="image" class="pointer"></p>
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-upload"></i></div>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" id="profileImage" class="custom-file-input pointer"
+                                                (change)="onFileSelected($event)" accept="image/*">
+                                            <label class="custom-file-label" for="profileImage">{{ fileName }}</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Validate Profile Image -->
+                                    <div *ngIf="!isValidFileSize || !isValidFileType">
+                                        <span class="text-danger">{{ errorMessage }}</span>
                                     </div>
                                 </div>
 
