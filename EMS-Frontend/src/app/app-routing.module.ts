@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddEditEmpComponent } from './employee/add-edit-emp/add-edit-emp.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { EmpListComponent } from './employee/emp-list/emp-list.component';
+import { ButtonRenderedComponent } from './employee/button-rendered/button-rendered.component';
 import { UploadTypeOneComponent } from './document/upload-type-one/upload-type-one.component';
 import { UploadTypeTwoComponent } from './document/upload-type-two/upload-type-two.component';
 import { DocumentComponent } from './document/document.component';
@@ -12,6 +14,7 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
   {
     path: 'employee', component: EmployeeComponent, children: [
+      { path: '', component: EmpListComponent, pathMatch: 'full' },
       { path: 'new', component: AddEditEmpComponent },
       { path: ':id', component: AddEditEmpComponent }
     ]

@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { }
+  //#region VARIABLES
 
+  //#endregion
+
+  //#region CONSTRUCTOR
+  constructor() { }
+  //#endregion
+
+  //#region EVENTS & METHODS
   ngOnInit() {
 
   }
-
+  //#endregion
 }

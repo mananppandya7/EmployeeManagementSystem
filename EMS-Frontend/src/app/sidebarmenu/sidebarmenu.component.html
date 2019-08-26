@@ -1,5 +1,6 @@
+<!-- #region SIDEBAR-->
 <nav class="side-navbar">
-  <!-- Sidebar Header-->
+  <!-- #region SIDEBAR HEADER-->
   <div class="sidebar-header d-flex align-items-center">
     <div class="avatar"><img src="../../assets/img/Manan.jpg" alt="..." class="img-fluid rounded-circle"></div>
     <div class="title">
@@ -7,24 +8,32 @@
       <p>Sr. Web Developer</p>
     </div>
   </div>
-  <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+  <!-- #endregion -->
+
+  <!-- #region SIDEBAR NAVIGATION MENU-->
+  <span class="heading">Main</span>
   <ul class="list-unstyled">
     <li routerLinkActive='active' [routerLinkActiveOptions]="{exact: true}" class="pointer"
       (click)="onMenuClick('Dashboard')"><a routerLink=''><i class="icon-home"></i>Dashboard</a></li>
     <li routerLinkActive='active' class="pointer" (click)="onMenuClick('Employee')"><a routerLink='/employee'><i
           class="fa fa-user"></i>Employee</a></li>
   </ul>
+  <!-- #endregion -->
 
-  <!-- Extra's Menu -->
+  <!-- #region EXTRA'S MENU-->
   <span class="heading">Extras</span>
   <ul class="list-unstyled">
     <li routerLinkActive='active' class="pointer">
       <a href="#documentDropdown" aria-expanded="false" data-toggle="collapse" class="collapsed"><i
           class="fa fa-file"></i>Document</a>
       <ul id="documentDropdown" class="list-unstyled collapse">
-        <li routerLinkActive='active' (click)="onMenuClick('Document / Type1')"><a routerLink='/document/type1'>Type 1</a></li>
-        <li routerLinkActive='active' (click)="onMenuClick('Document / Type2')"><a routerLink='/document/type2'>Type 2</a></li>
+        <li routerLinkActive='active' (click)="onMenuClick('Document / Type1')"><a routerLink='/document/type1'>Type
+            1</a></li>
+        <li routerLinkActive='active' (click)="onMenuClick('Document / Type2')"><a routerLink='/document/type2'>Type
+            2</a></li>
       </ul>
     </li>
   </ul>
+  <!-- #endregion -->
 </nav>
+<!-- #endregion -->

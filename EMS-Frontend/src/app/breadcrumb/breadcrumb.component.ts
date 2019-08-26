@@ -10,15 +10,20 @@ import { DefaultService } from '../common/default.service';
 })
 export class BreadcrumbComponent implements OnInit, OnDestroy {
 
+  //#region VARIABLES
   breadcrumb: string = null;
   private subscription: Subscription;
+  //#endregion
 
+  //#region  CONSTRUCTOR
   constructor(private defaultService: DefaultService) { }
+  //#endregion
 
+  //#region EVENTS & METHODS
   ngOnInit() {
     this.subscription = this.defaultService.pageHeaderChanged.subscribe(breadcrumb => {
       if (breadcrumb !== 'Dashboard')
-        this.breadcrumb = breadcrumb;
+        this.breadcrumb = breadcrumb === '' ? null : breadcrumb;
       else
         this.breadcrumb = null;
     });
@@ -27,5 +32,5 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
+  //#endregion
 }

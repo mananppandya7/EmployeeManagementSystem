@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  //#region VARIABLES
+
+  //#endregion
+
+  //#region  CONSTRUCTOR
   constructor() { }
+  //#endregion
 
+  //#region EVENTS & METHODS
   ngOnInit() {
-  }
 
+  }
+  //#endregion
 }

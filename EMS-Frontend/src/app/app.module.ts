@@ -1,11 +1,13 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
+import { AgGridModule } from 'ag-grid-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { DocumentComponent } from './document/document.component';
 import { UploadTypeOneComponent } from './document/upload-type-one/upload-type-one.component';
 import { UploadTypeTwoComponent } from './document/upload-type-two/upload-type-two.component';
+import { EmpListComponent } from './employee/emp-list/emp-list.component';
+import { ButtonRenderedComponent } from './employee/button-rendered/button-rendered.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { UploadTypeTwoComponent } from './document/upload-type-two/upload-type-t
     DocumentComponent,
     UploadTypeOneComponent,
     UploadTypeTwoComponent,
+    EmpListComponent,
+    ButtonRenderedComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,9 @@ import { UploadTypeTwoComponent } from './document/upload-type-two/upload-type-t
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    AgGridModule.withComponents([ButtonRenderedComponent]),
+    NgbModule,
   ],
   providers: [Title],
   bootstrap: [AppComponent]

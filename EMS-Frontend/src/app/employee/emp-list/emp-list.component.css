@@ -1,0 +1,16 @@
+
+/* AG-GRID Import CSS */
+ @import '../../../../node_modules/ag-grid-community/dist/styles/ag-grid.css';
+ @import '../../../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css';
+
+ /* Container */
+ .container{
+  max-width: 98%;
+  margin-top: 2%;
+  background-color: aliceblue;
+}
+
+/* AG-GRID Height */
+ .ag-grid-angular{
+     height: 100%;
+ }      

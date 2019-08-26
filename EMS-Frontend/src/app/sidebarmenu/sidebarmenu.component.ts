@@ -10,10 +10,17 @@ import { DefaultService } from '../common/default.service';
 })
 export class SidebarmenuComponent implements OnInit {
 
-  private pageHeaderStr: string ;
-  constructor(private defaultService: DefaultService, private location: Location) { }
+  //#region VARIABLES
+  private pageHeaderStr: string;
+  //#endregion
 
+  //#region  CONSTRUCTOR
+  constructor(private defaultService: DefaultService, private location: Location) { }
+  //#endregion
+
+  //#region EVENTS & METHODS
   ngOnInit() {
+    debugger;
     this.pageHeaderStr = this.location.path().replace('/', '');
 
     if (this.pageHeaderStr.includes('/') === true)
@@ -27,4 +34,5 @@ export class SidebarmenuComponent implements OnInit {
   onMenuClick(pageHeader: string): void {
     this.defaultService.pageHeader(pageHeader);
   }
+  //#endregion
 }

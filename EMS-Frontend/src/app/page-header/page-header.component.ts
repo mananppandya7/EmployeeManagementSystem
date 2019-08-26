@@ -11,11 +11,16 @@ import { DefaultService } from '../common/default.service';
 })
 export class PageHeaderComponent implements OnInit, OnDestroy {
 
+  //#region VARIABLES
   pageHeader: string;
   private subscription: Subscription;
+  //#endregion
 
+  //#region  CONSTRUCTOR
   constructor(private defaultService: DefaultService, private title: Title) { }
+  //#endregion
 
+  //#region EVENTS & METHODS
   ngOnInit() {
     this.subscription = this.defaultService.pageHeaderChanged.subscribe(header => {
       if (header) {
@@ -33,4 +38,5 @@ export class PageHeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+  //#endregion
 }

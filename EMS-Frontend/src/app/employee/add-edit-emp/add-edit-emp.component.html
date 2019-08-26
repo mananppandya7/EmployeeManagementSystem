@@ -1,5 +1,6 @@
 <section class="forms">
     <div class="container-fluid">
+        <!-- #region CARD -->
         <div class="card">
             <div class="card-close">
                 <div class="dropdown">
@@ -12,16 +13,15 @@
                 </div>
             </div>
             <div class="card-header d-flex align-items-center">
-                <h3 class="h4">Add Employee</h3>
+                <h3 class="h4">{{ empFormHeader }} Employee</h3>
             </div>
             <div class="card-body">
-
+                <!-- #region EMPLOYEE FORM -->
                 <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
                     <div class="form-group row">
                         <div class="col-md-12">
 
-                            <input type="hidden" formControlName="employeeId">
-
+                            <!-- #region FIRSTNAME NAD LASTNAME -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Firstname<span>*</span></label>
@@ -30,9 +30,9 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.firstName.errors">
                                                 <i class="fa fa-user"
-                                                    [class.red-icon]="submitted && f.firstName.errors"></i>
-                                            </div>
+                                                    [class.red-icon]="submitted && f.firstName.errors"></i></div>
                                         </div>
+                                        <input type="hidden" formControlName="employeeId">
                                         <input type="text" formControlName="firstName" class="form-control"
                                             placeholder="Enter Firstname"
                                             [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
@@ -60,7 +60,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region FATHER'S NAME NAD EMAIL -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Father's Name<span>*</span></label>
@@ -99,7 +101,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region DOB AND DOJ -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Date of Birth (DOB)<span>*</span></label>
@@ -138,7 +142,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region DEPARTMENT AND DESIGNATION -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Department<span>*</span></label>
@@ -175,6 +181,7 @@
                                         </div>
 
                                         <select class="form-control pointer" formControlName="designation"
+                                            (change)="onDesignationChange($event, $event.target.value)"
                                             [ngClass]="{ 'is-invalid': submitted && f.designation.errors }">
                                             <option value="">-- Select --</option>
 
@@ -189,7 +196,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region ADDERSS -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Address<span>*</span></label>
@@ -210,7 +219,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region STATE AND CITY -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>State<span>*</span></label>
@@ -222,6 +233,7 @@
                                         </div>
 
                                         <select class="form-control pointer" formControlName="state"
+                                            (change)="onStateChange($event, $event.target.value)"
                                             [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
                                             <option value="">-- Select --</option>
                                             <option *ngFor="let state of states" value="{{ state.stateId }}">
@@ -252,7 +264,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region POSTCODE AND CONTACTNUMBER -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Postcode<span>*</span></label>
@@ -294,7 +308,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region GENDER AND MARITALSTATUS -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Gender<span>*</span></label>
@@ -319,14 +335,14 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="custom-control custom-radio">
-                                                <input id="married" type="radio" class="radio-template" value=false
+                                                <input id="married" type="radio" class="radio-template" value=true
                                                     formControlName="maritalStatus">
                                                 <label for="married">Married</label>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="custom-control custom-radio">
-                                                <input id="Unmarried" type="radio" class="radio-template" value=true
+                                                <input id="Unmarried" type="radio" class="radio-template" value=false
                                                     formControlName="maritalStatus"
                                                     [ngClass]="{ 'is-invalid': submitted && f.maritalStatus.errors }">
                                                 <label for="Unmarried">Unmarried</label>
@@ -338,10 +354,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region IMAGE AND BLOODGROUP -->
                             <div class="row">
-
-                                <!-- Profile Image Upload -->
                                 <div class="col-md-6">
                                     <label>Image<span>*</span></label>
                                     <div class="input-group mb-2">
@@ -354,7 +370,6 @@
                                             <label class="custom-file-label" for="profileImage">{{ fileName }}</label>
                                         </div>
                                     </div>
-
                                     <!-- Validate Profile Image -->
                                     <div *ngIf="!isValidFileSize || !isValidFileType">
                                         <span class="text-danger">{{ errorMessage }}</span>
@@ -373,6 +388,7 @@
                                         </div>
 
                                         <select class="form-control pointer" formControlName="bloodGroup"
+                                            (change)="onBloodGroupChange($event, $event.target.value)"
                                             [ngClass]="{ 'is-invalid': submitted && f.bloodGroup.errors }">
                                             <option value="">-- Select --</option>
                                             <option *ngFor="let bloodgroup of bloodgroups"
@@ -386,7 +402,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
+                            <!-- #region IDENTITYTYPE AND IDENTITYNUMBER -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Identity Type<span>*</span></label>
@@ -412,8 +430,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6" *ngIf="identityType || employeeId > 0">
-                                    <label>{{ identityType }}<span>*</span></label>
+                                <div class="col-md-6" *ngIf="identityTypeStr || employeeId > 0">
+                                    <label>{{ identityTypeStr }}<span>*</span></label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"
@@ -422,7 +440,7 @@
                                                     [class.red-icon]="submitted && f.identityNumber.errors"></i></div>
                                         </div>
                                         <input type="text" formControlName="identityNumber" class="form-control"
-                                            placeholder="Enter {{identityType}} Number"
+                                            placeholder="Enter {{identityTypeStr}} Number"
                                             [ngClass]="{ 'is-invalid': submitted && f.identityNumber.errors }">
                                         <div *ngIf="submitted && f.identityNumber.errors" class="invalid-feedback">
                                             <div *ngIf="f.identityNumber.errors.required">Identity Number is required
@@ -431,14 +449,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- #endregion -->
 
                         </div>
                     </div>
+                    <!--Button-->
                     <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary pointer">
+                        <input type="submit" value="Submit" class="btn btn-primary"> |
+                        <input type="button" value="Reset" class="btn  btn-secondary" (click)="onReset()">
                     </div>
                 </form>
+                <!-- #endregion -->
             </div>
         </div>
+        <!-- #endregion -->
     </div>
 </section>
