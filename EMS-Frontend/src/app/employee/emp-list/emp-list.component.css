@@ -4,8 +4,10 @@
  @import '../../../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css';
 
  /* Container */
- .container{
-  max-width: 98%;
+
+.container-class{
+  max-width: 95%;
+  margin-left: 2%;
   margin-top: 2%;
   background-color: aliceblue;
 }

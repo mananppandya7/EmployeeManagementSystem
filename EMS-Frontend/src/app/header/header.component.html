@@ -112,8 +112,12 @@
                         </ul>
                     </li>
                     <!-- Logout-->
-                    <li class="nav-item"><a href="login.html" class="nav-link logout"> <span
+                    <li class="nav-item pointer" *ngIf="isLoggedIn"><a routerLink='' class="nav-link logout" (click)="onLogout()"><span
                                 class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+
+                    <!-- Login -->
+                    <li class="nav-item pointer" *ngIf="!isLoggedIn"><a class="nav-link logout" (click)="onLogin()"><span
+                                class="d-none d-sm-inline">Login</span><i class="fa fa-sign-in"></i></a></li>
                 </ul>
             </div>
         </div>

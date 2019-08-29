@@ -9,6 +9,8 @@ import { ButtonRenderedComponent } from './employee/button-rendered/button-rende
 import { UploadTypeOneComponent } from './document/upload-type-one/upload-type-one.component';
 import { UploadTypeTwoComponent } from './document/upload-type-two/upload-type-two.component';
 import { DocumentComponent } from './document/document.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { AuthGuard } from './authorization/auth.guard';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
@@ -24,6 +26,9 @@ const routes: Routes = [
       { path: 'type1', component: UploadTypeOneComponent },
       { path: 'type2', component: UploadTypeTwoComponent }
     ]
+  },
+  {
+    path: 'auth', component: AuthorizationComponent, canActivate: [AuthGuard]
   }
 ];
 

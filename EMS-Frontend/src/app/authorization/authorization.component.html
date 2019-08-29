@@ -1,0 +1,57 @@
+<div class="col-md-12 row">
+
+    <!-- Display Admin panel based on role of logged in user -->
+    <div class="col-md-6">
+        <section>
+            <div class="card">
+                <div class="card-close">
+                    <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                            <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#"
+                                class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header d-flex align-items-center">
+                    <h3 class="h4">Admin Panel</h3>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="!isAdmin">
+                        <img src="../../assets/img/unauthorized.png" alt="oops! you are UnAuthorized!"
+                            class="rounded mx-auto d-block mb-3" style="width: 200px;height: 200px;">
+
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fa fa-warning"></i> Opps! you are not authorized to see this section (Allowed for
+                            administrators only).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- User panel -->
+    <div class="col-md-6">
+        <section>
+            <div class="card">
+                <div class="card-close">
+                    <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                            <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#"
+                                class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header d-flex align-items-center">
+                    <h3 class="h4">User Panel</h3>
+                </div>
+                <div class="card-body">
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

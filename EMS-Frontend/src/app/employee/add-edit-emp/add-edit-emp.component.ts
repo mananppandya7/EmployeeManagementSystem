@@ -95,7 +95,6 @@ export class AddEditEmpComponent implements OnInit {
     // Dropdown set text
     this.employeeForm.value.department = this.departmentStr;
     this.employeeForm.value.designation = this.designationStr;
-    console.log(this.designationStr);
     this.employeeForm.value.identityType = this.identityTypeStr;
     this.employeeForm.value.bloodGroup = this.bloodgroupStr;
     this.employeeForm.value.state = this.stateStr;
@@ -143,7 +142,6 @@ export class AddEditEmpComponent implements OnInit {
 
   // Designation Dropdown change event
   onDesignationChange(event, index) {
-    debugger;
     this.designationStr = event.target.options[index].text;
   }
 

@@ -20,7 +20,6 @@ export class SidebarmenuComponent implements OnInit {
 
   //#region EVENTS & METHODS
   ngOnInit() {
-    debugger;
     this.pageHeaderStr = this.location.path().replace('/', '');
 
     if (this.pageHeaderStr.includes('/') === true)

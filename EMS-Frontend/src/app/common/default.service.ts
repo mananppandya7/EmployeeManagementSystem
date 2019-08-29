@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, from } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 import { Department } from '../models/department'
@@ -11,17 +11,19 @@ import { Identitytype } from '../models/identitytype';
 @Injectable({
   providedIn: 'root'
 })
-
 export class DefaultService {
 
   //#region VARIABLES
   designations: Designation[];
   pageHeaderChanged = new BehaviorSubject('Dashboard');
+  logIn = new Subject<boolean>();
   //#endregion
 
   //#region  CONSTRUCTOR
   constructor() { }
   //#endregion
+  
+
 
   //#region EVENTS & METHODS
   // For page header
@@ -36,6 +38,7 @@ export class DefaultService {
     new Department(3, "Information Technology")
   ];
 
+  // Identity types
   identitytype: Identitytype[] = [
     new Identitytype(1, 'Aadhaar Card'),
     new Identitytype(2, 'License'),
@@ -145,5 +148,6 @@ export class DefaultService {
   getToday(): string {
     return new Date().toISOString().split('T')[0]
   }
+
   //#endregion
 }

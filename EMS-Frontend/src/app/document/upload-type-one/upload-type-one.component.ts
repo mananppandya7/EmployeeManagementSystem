@@ -131,7 +131,6 @@ export class UploadTypeOneComponent implements OnInit {
   // Upload profile image
   onUploadImage() {
     this.documentService.fileUpload(this.selectedFile).subscribe(response => {
-      console.log(response);
       if (response) {
         this.fileName = "Choose File";
         this.imageURL = null;
