@@ -9,7 +9,7 @@ import { State } from 'src/app/models/state';
 import { Bloodgroup } from '../../models/bloodgroup'
 import { EmployeeService } from '../employee.service';
 import { Identitytype } from '../../models/identitytype';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-emp',
@@ -22,14 +22,20 @@ export class AddEditEmpComponent implements OnInit {
   employeeForm: FormGroup;
   submitted = false;
 
-  // Variables for Image-Upload
+  //Variables for Image-Upload
   fileName;
   private imageURL;
   errorMessage;
   isValidFileSize: boolean;
   isValidFileType: boolean;
 
-  private identityType: string;
+  private identityTypeStr: string;
+  private departmentStr: string;
+  private designationStr: string;
+  private bloodgroupStr: string;
+  private stateStr: string;
+  private empFormHeader: string;
+
   departments: Department[];
   designations: Designation[];
   identitytypes: Identitytype[];
@@ -44,9 +50,11 @@ export class AddEditEmpComponent implements OnInit {
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private toastr: ToastrService,
-    private activeRoute: ActivatedRoute) { }
+    private activeRoute: ActivatedRoute,
+    private router: Router) { }
   //#endregion
 
+  //#region EVENTS & METHODS
   ngOnInit() {
     // Get EmployeeId
     this.employeeId = +this.activeRoute.snapshot.params["id"];
@@ -58,6 +66,7 @@ export class AddEditEmpComponent implements OnInit {
     this.states = this.defaultService.states;
     this.bloodgroups = this.defaultService.bloodgroups;
     this.identitytypes = this.defaultService.identitytype;
+    this.empFormHeader = 'Add';
 
     this.fileName = "Choose File";
 
@@ -65,37 +74,52 @@ export class AddEditEmpComponent implements OnInit {
     this.initForm();
 
     // Get employee by Id if in Edit mode
-    if (this.employeeId > 0)
+    if (this.employeeId > 0) {
+      this.empFormHeader = 'Edit';
       this.onGetEmployeeById(this.employeeId);
+    }
   }
 
   // Convenience getter for easy access to form fields
   get f() { return this.employeeForm.controls; }
 
-  //#region EVENTS & METHODS
-
   // Add/Edit Employee
   onSubmit() {
     this.submitted = true;
+
     // Stop here if form is invalid
     if (this.employeeForm.invalid) {
       return;
     }
+
+    // Dropdown set text
+    this.employeeForm.value.department = this.departmentStr;
+    this.employeeForm.value.designation = this.designationStr;
+    this.employeeForm.value.identityType = this.identityTypeStr;
+    this.employeeForm.value.bloodGroup = this.bloodgroupStr;
+    this.employeeForm.value.state = this.stateStr;
+
+    // Set gender character
     this.employeeForm.value.gender = this.employeeForm.value.gender.charAt(0);
+
+    // For image
     this.employeeForm.value.image = this.imageURL;
 
+    // For edit
     if (this.employeeId > 0) {
       this.employeeService.editEmployee(this.employeeId, this.employeeForm.value).subscribe(emp => {
         this.toastr.success("Employee updated successfully.");
-        this.employeeForm.reset();
+        this.router.navigate(['/employee'], { relativeTo: this.activeRoute });
       }, error => {
         this.toastr.error("Error occured while updating employee.");
       });
     }
+    // For add
     else {
-      //this.employeeForm.value.employeeId = 0;
       this.employeeService.addEmployee(this.employeeForm.value).subscribe(emp => {
         this.toastr.success("Employee added successfully.");
+        this.employeeForm.reset();
+        this.router.navigate(['/employee'], { relativeTo: this.activeRoute });
       }, error => {
         this.toastr.error("Error occured while adding employee.");
       });
@@ -104,20 +128,53 @@ export class AddEditEmpComponent implements OnInit {
 
   // Display Identity textbox dynamically based on type
   onIdentityChange(event, index) {
-    this.identityType = event.target.options[index].text;
+    this.identityTypeStr = event.target.options[index].text;
 
     if (index === '0')
-      this.identityType = null;
+      this.identityTypeStr = null;
   }
 
   // Department Dropdown change event
   onDepartmentChange(event, index) {
+    this.departmentStr = event.target.options[index].text;
     this.designations = this.defaultService.getDesignations(event, index);
+  }
+
+  // Designation Dropdown change event
+  onDesignationChange(event, index) {
+    this.designationStr = event.target.options[index].text;
+  }
+
+  // BloodGroup Dropdown change event
+  onBloodGroupChange(event, index) {
+    this.bloodgroupStr = event.target.options[index].text;
+  }
+
+  // BloodGroup Dropdown change event
+  onStateChange(event, index) {
+    this.stateStr = event.target.options[index].text;
   }
 
   // Get employee details by Id
   onGetEmployeeById(employeeId: number) {
     this.employeeService.getEmployeeById(employeeId).subscribe(emp => {
+
+      // For update set text
+      this.departmentStr = emp.department;
+      this.designationStr = emp.designation;
+      this.stateStr = emp.state;
+      this.bloodgroupStr = emp.bloodGroup;
+      this.identityTypeStr = emp.identityType;
+
+      // Dropdown set value
+      emp.department = this.departments.find(s => s.departmentName === emp.department).departmentId.toString();
+      this.designations = this.defaultService.getDesignations(event, emp.department); // For designations dropdown list show
+      emp.designation = this.designations.find(s => s.designationName === emp.designation).designationId.toString();
+      emp.state = this.states.find(s => s.stateName === emp.state).stateId.toString();
+      emp.identityType = this.identitytypes.find(s => s.name === emp.identityType).id.toString();
+      emp.bloodGroup = this.bloodgroups.find(s => s.bloodGroupName === emp.bloodGroup).bloodGroupId.toString();
+
+      // Form patchValue
       this.employeeForm.patchValue({
         employeeId: emp.employeeId,
         firstName: emp.firstName,
@@ -140,9 +197,15 @@ export class AddEditEmpComponent implements OnInit {
         identityType: emp.identityType,
         identityNumber: emp.identityNumber
       });
-      this.identityType = this.defaultService.getIdentityType(+emp.identityType);
-      this.designations = this.defaultService.getDesignations(event, emp.designation);
+      // For set label of identity number 
+      this.identityTypeStr = this.defaultService.getIdentityType(+emp.identityType);
     });
+  }
+
+  // Reset employee form
+  onReset() {
+    this.employeeForm.reset();
+    this.onGetEmployeeById(this.employeeId);
   }
 
   // Validate selected file & convert file in Base64String
@@ -188,7 +251,6 @@ export class AddEditEmpComponent implements OnInit {
 
   // Initialize Form - Reactive
   private initForm() {
-
     this.employeeForm = this.formBuilder.group({
       employeeId: [0],
       firstName: ['', Validators.required],

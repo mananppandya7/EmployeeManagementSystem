@@ -27,9 +27,11 @@ export class UploadTypeTwoComponent implements OnInit {
   constructor(private documentService: DocumentService, private toastr: ToastrService) { }
   //#endregion
 
+  //#region INIT METHODS
   ngOnInit() {
     this.fileName = 'Choose File';
   }
+//#endregion
 
   //#region EVENTS & METHODS
 
@@ -80,7 +82,6 @@ export class UploadTypeTwoComponent implements OnInit {
     let imageWithForm = new ImageWithForm(0, firstName, lastName, this.selectedFile);
 
     this.documentService.fileUploadWithForm(imageWithForm).subscribe(response => {
-      console.log(response);
       if (response) {
         this.toastr.success('Data has been saved successfully.');
         this.imageURL = null;

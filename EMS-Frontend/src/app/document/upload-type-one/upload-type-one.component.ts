@@ -80,9 +80,11 @@ export class UploadTypeOneComponent implements OnInit {
   }
   //#endregion
 
+  //#region INIT METHODS
   ngOnInit() {
     this.fileName = "Choose File";
   }
+  //#endregion
 
   //#region EVENTS & METHODS
 
@@ -129,7 +131,6 @@ export class UploadTypeOneComponent implements OnInit {
   // Upload profile image
   onUploadImage() {
     this.documentService.fileUpload(this.selectedFile).subscribe(response => {
-      console.log(response);
       if (response) {
         this.fileName = "Choose File";
         this.imageURL = null;

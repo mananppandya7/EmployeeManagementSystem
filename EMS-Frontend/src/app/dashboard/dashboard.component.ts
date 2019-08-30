@@ -8,11 +8,18 @@ import { Component, OnInit, DefaultIterableDiffer } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  //#region VARIABLES
 
+  //#endregion
+
+  //#region  CONSTRUCTOR
   constructor() { }
+  //#endregion
 
+  //#region INIT METHODS
   ngOnInit() {
-   
+
   }
 
+  //#endregion
 }

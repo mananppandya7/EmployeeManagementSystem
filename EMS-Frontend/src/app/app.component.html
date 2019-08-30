@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" *ngIf="isLogin">
     <!-- Main Navbar-->
     <app-header></app-header>
     <div class="page-content d-flex align-items-stretch">
@@ -15,3 +15,5 @@
         </div>
     </div>
 </div>
+<!-- Log-In Component -->
+<app-login *ngIf="!isLogin"></app-login>

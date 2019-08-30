@@ -8,4 +8,10 @@ export class APIUrl {
     public static readonly documentType1 = `${APIUrl.BaseURL}document/UploadDocumentType1`;
     public static readonly documentType2 = `${APIUrl.BaseURL}document/UploadDocumentType2`;
     //#endregion
+
+    //#region AUTH
+    public static readonly login = `${APIUrl.BaseURL}Authentication/LogIn`;
+    public static readonly authorizeAdmin = `${APIUrl.BaseURL}Authentication/AuthorizeAdmin`;
+    public static readonly authorizeUser = `${APIUrl.BaseURL}Authentication/AuthorizeUser`;
+    //#endregion
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, from } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 import { Department } from '../models/department'
@@ -11,14 +11,21 @@ import { Identitytype } from '../models/identitytype';
 @Injectable({
   providedIn: 'root'
 })
-
 export class DefaultService {
 
+  //#region VARIABLES
   designations: Designation[];
   pageHeaderChanged = new BehaviorSubject('Dashboard');
+  logIn = new Subject<boolean>();
+  //#endregion
 
+  //#region  CONSTRUCTOR
   constructor() { }
+  //#endregion
+  
 
+
+  //#region EVENTS & METHODS
   // For page header
   pageHeader(pageHeader: string) {
     this.pageHeaderChanged.next(pageHeader);
@@ -31,6 +38,7 @@ export class DefaultService {
     new Department(3, "Information Technology")
   ];
 
+  // Identity types
   identitytype: Identitytype[] = [
     new Identitytype(1, 'Aadhaar Card'),
     new Identitytype(2, 'License'),
@@ -76,8 +84,6 @@ export class DefaultService {
   // Get Designations
   getDesignations(event, index) {
 
-    //let department = event.target.options[index].text;
-
     switch (index) {
       // -- Select --
       case '0': {
@@ -86,20 +92,20 @@ export class DefaultService {
       }
       case '1': {
         this.designations = [
-          new Designation(1, "HR Assistant"),
-          new Designation(2, "HR Director"),
-          new Designation(3, "HR Generalist"),
-          new Designation(4, "HR Manager"),
-          new Designation(5, "HR VP")
+          new Designation(1, "Director Finance"),
+          new Designation(2, "Finance Assistant"),
+          new Designation(3, "Manager Finance"),
+          new Designation(4, "Senior Officer Finance")
         ];
         break;
       }
       case '2': {
         this.designations = [
-          new Designation(1, "Director Finance"),
-          new Designation(2, "Finance Assistant"),
-          new Designation(3, "Manager Finance"),
-          new Designation(4, "Senior Officer Finance"),
+          new Designation(1, "HR Assistant"),
+          new Designation(2, "HR Director"),
+          new Designation(3, "HR Generalist"),
+          new Designation(4, "HR Manager"),
+          new Designation(5, "HR VP")
         ];
         break;
       }
@@ -141,5 +147,7 @@ export class DefaultService {
   // Get today's date
   getToday(): string {
     return new Date().toISOString().split('T')[0]
- }
+  }
+
+  //#endregion
 }

@@ -160,7 +160,7 @@ input {
 }
 
 .breadcrumb {
-  background: #fff;
+  background: #fff !important;
   position: relative;
   z-index: 7;
   border-radius: 0;

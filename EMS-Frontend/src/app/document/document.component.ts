@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentComponent implements OnInit {
 
+  //#region VARIABLES
+
+  //#endregion
+
+  //#region  CONSTRUCTOR
   constructor() { }
+  //#endregion
 
+  //#region INIT METHODS
   ngOnInit() {
-  }
 
+  }
+  //#endregion
+
+  //#region EVENTS & METHODS
+
+
+  //#endregion
 }
