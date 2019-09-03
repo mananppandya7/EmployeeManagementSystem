@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { User } from '../models/user';
 import { APIUrl } from '../common/APIUrl';
 import { BehaviorSubject } from 'rxjs';
 import { Role } from '../common/enums';
@@ -8,7 +9,7 @@ import { Role } from '../common/enums';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticationService {
 
     //#region VARIABLES
     user = new BehaviorSubject<User>(null);

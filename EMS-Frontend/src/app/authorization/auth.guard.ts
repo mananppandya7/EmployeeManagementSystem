@@ -1,8 +1,9 @@
 import { CanActivate, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 import { take, map } from 'rxjs/operators';
+
+import { AuthenticationService } from './auth.service';
 import { DefaultService } from '../common/default.service';
 
 @Injectable({
@@ -11,7 +12,7 @@ import { DefaultService } from '../common/default.service';
 export class AuthGuard implements CanActivate {
 
     //#region CONSTRUCTOR
-    constructor(private authService: AuthService, private defaultService: DefaultService) { }
+    constructor(private authService: AuthenticationService, private defaultService: DefaultService) { }
     //#endregion
 
     //#region METHODS
@@ -19,9 +20,14 @@ export class AuthGuard implements CanActivate {
     // Helps to prevent route-authenticate from unknown user (AuthGuard)
     canActivate(): | boolean | UrlTree | Promise<boolean | UrlTree> | Observable<boolean | UrlTree> {
         let token = localStorage.getItem('token');
+        let socialToken = localStorage.getItem('socialLoginToken');
+        let isAuth: boolean;
 
         return this.authService.user.pipe(take(1), map(user => {
-            let isAuth = !!user || token != null;
+            if (token !== null)
+                isAuth = !!user || token != null;
+            else
+                isAuth = socialToken != null;
 
             if (isAuth) {
                 return true;

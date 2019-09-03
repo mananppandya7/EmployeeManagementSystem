@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, SocialLoginModule } from 'angularx-social-login';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,19 @@ import { ButtonRenderedComponent } from './employee/button-rendered/button-rende
 import { AuthorizationComponent } from './authorization/authorization.component';
 //import { AuthInterceptorService } from './auth.interceptor.service';
 import { LoginComponent } from './login/login.component';
+import { EMSConstants } from './common/ems.constants';
+
+// Secret Keys for google & Facebook
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(EMSConstants.GoogleKey)
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider(EMSConstants.FacebookKey)
+  }
+]);
 
 @NgModule({
   declarations: [
@@ -58,6 +72,7 @@ import { LoginComponent } from './login/login.component';
     FileUploadModule,
     AgGridModule.withComponents([ButtonRenderedComponent]),
     NgbModule,
+    SocialLoginModule.initialize(config)
   ],
   // Uncomment below line if you would like to use HttpInterceptor
   //providers: [Title, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
