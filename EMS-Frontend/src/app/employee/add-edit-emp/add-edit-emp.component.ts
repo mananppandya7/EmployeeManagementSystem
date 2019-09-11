@@ -166,14 +166,6 @@ export class AddEditEmpComponent implements OnInit {
       this.bloodgroupStr = emp.bloodGroup;
       this.identityTypeStr = emp.identityType;
 
-      // Dropdown set value
-      emp.department = this.departments.find(s => s.departmentName === emp.department).departmentId.toString();
-      this.designations = this.defaultService.getDesignations(event, emp.department); // For designations dropdown list show
-      emp.designation = this.designations.find(s => s.designationName === emp.designation).designationId.toString();
-      emp.state = this.states.find(s => s.stateName === emp.state).stateId.toString();
-      emp.identityType = this.identitytypes.find(s => s.name === emp.identityType).id.toString();
-      emp.bloodGroup = this.bloodgroups.find(s => s.bloodGroupName === emp.bloodGroup).bloodGroupId.toString();
-
       // Form patchValue
       this.employeeForm.patchValue({
         employeeId: emp.employeeId,
@@ -181,23 +173,25 @@ export class AddEditEmpComponent implements OnInit {
         lastName: emp.lastName,
         fatherName: emp.fatherName,
         email: emp.email,
-        dateOfBirth: this.defaultService.parseDate(emp.dateOfBirth),
-        dateOfJoining: this.defaultService.parseDate(emp.dateOfJoining),
-        department: emp.department,
-        designation: emp.designation,
+        dateOfBirth: this.defaultService.parseDate2(emp.dateOfBirth),
+        dateOfJoining: this.defaultService.parseDate2(emp.dateOfJoining),
+        department: emp.departmentId,
+        designation: emp.designationId,
         address: emp.address,
-        state: emp.state,
+        state: emp.stateId,
         city: emp.city,
         postcode: emp.postcode,
         contactNumber: emp.contactNumber,
         gender: emp.gender === 'M' ? 'Male' : 'Female',
         maritalStatus: emp.maritalStatus === true ? 'true' : 'false',
         image: emp.image,
-        bloodGroup: emp.bloodGroup,
-        identityType: emp.identityType,
+        bloodGroup: emp.bloodGroupId,
+        identityType: emp.identityTypeId,
         identityNumber: emp.identityNumber
       });
-      // For set label of identity number 
+      // Get designation list.
+      this.designations = this.defaultService.getDesignations(event, emp.departmentId.toString());
+      // To get identity type string e.g. Aadhaar Card, License, PAN Card etc.
       this.identityTypeStr = this.defaultService.getIdentityType(+emp.identityType);
     });
   }

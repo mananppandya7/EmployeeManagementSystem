@@ -9,6 +9,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,9 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 //import { AuthInterceptorService } from './auth.interceptor.service';
 import { LoginComponent } from './login/login.component';
 import { EMSConstants } from './common/ems.constants';
+import { AgGridComponent } from './employee/emp-list/ag-grid/ag-grid.component';
+import { AngularDatatableComponent } from './employee/emp-list/angular-datatable/angular-datatable.component';
+import { ImageRenderedComponent } from './employee/image-rendered/image-rendered.component';
 
 // Secret Keys for google & Facebook
 const config = new AuthServiceConfig([
@@ -59,6 +63,9 @@ const config = new AuthServiceConfig([
     EmpListComponent,
     ButtonRenderedComponent,
     AuthorizationComponent,
+    AgGridComponent,
+    AngularDatatableComponent,
+    ImageRenderedComponent,
     LoginComponent
   ],
   imports: [
@@ -70,7 +77,8 @@ const config = new AuthServiceConfig([
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FileUploadModule,
-    AgGridModule.withComponents([ButtonRenderedComponent]),
+    AgGridModule.withComponents([ButtonRenderedComponent, ImageRenderedComponent]),
+    DataTablesModule,
     NgbModule,
     SocialLoginModule.initialize(config)
   ],

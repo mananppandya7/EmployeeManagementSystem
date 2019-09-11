@@ -1,0 +1,97 @@
+import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { DataTableDirective } from 'angular-datatables';
+
+import { Employee } from 'src/app/models/employee';
+import { EmployeeService } from '../../employee.service';
+import { DefaultService } from 'src/app/common/default.service';
+
+@Component({
+  selector: 'app-angular-datatable',
+  templateUrl: './angular-datatable.component.html',
+  styleUrls: ['./angular-datatable.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class AngularDatatableComponent implements OnInit, OnDestroy {
+
+  //#region VARIABLES
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
+
+  dtOptions: DataTables.Settings = {};
+  employee: Employee[] = [];
+  dtTrigger: Subject<any> = new Subject();
+  private closeResult: string;
+  //#endregion
+
+  //#region  CONSTRUCTOR
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private modalService: NgbModal,
+    private toastr: ToastrService,
+    private defaultService: DefaultService
+  ) { }
+  //#endregion
+
+  //#region EVENTS & METHODS
+  ngOnInit() {
+
+    this.defaultService.agGridRouterLinkActive = '';
+
+    this.dtOptions = {
+      order: [],
+      autoWidth: true,
+      scrollX: true,
+    };
+    this.employeeService.getAllEmployee().subscribe(employee => {
+      this.employee = employee;
+      this.dtTrigger.next();
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe subscription.
+    this.dtTrigger.unsubscribe();
+  }
+
+  // To Edit an employee.
+  onEditClick(id: number) {
+    this.router.navigate(['../' + id], { relativeTo: this.activeRoute });
+  }
+
+  // To Delete an employee.
+  onDeleteClick(content, employee: any, index: number) {
+    this.modalService.open(content).result.then((result) => {
+      this.employeeService.deleteEmployee(employee.employeeId).subscribe(emp => {
+        this.toastr.success(`Employee (${emp.firstName + ' ' + emp.lastName}) deleted successfully.`);
+        // Remove deleted row.
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.destroy();
+          this.employee.splice(index);
+          this.dtTrigger.next();
+        });
+      }, error => {
+        this.toastr.error(`Error occured while deleting (${employee.firstName + ' ' + employee.lastName}) employee.`);
+      });
+    }, (reason) => {
+      // Uncomment below line if you wish to perform custom logic on Modal dismiss.
+      //this.closeResult = this.getDismissReason(reason);
+    });
+  }
+
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
+  // }
+  //#endregion
+}
