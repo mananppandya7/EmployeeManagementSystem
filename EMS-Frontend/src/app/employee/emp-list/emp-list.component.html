@@ -1,34 +1,29 @@
-<!-- #region AG-GRID-->
-<div class="container-class my-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="test-header">
-                        Page Size:
-                        <select (change)="onPageSizeChanged($event)">
-                            <option value="10" selected="">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
+<!-- #region GRID-TYPE CARD (e.g. Ag-Grid, Angular DataTable, Prime NG etc.) -->
+<div class="card m-4">
+    <div class="card-body px-lg-5 pt-0">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="row mt-3">
+                    <div class="col-md-4 text-center">
+                        <a routerLink="ag-Grid" class="pointer {{ defaultService.agGridRouterLinkActive }}">+
+                            Ag-Grid</a>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-2 float-right">
-                        <button routerLink="new" class="btn btn-primary"><b>+ Add New</b></button>
+                    <div class="col-md-4 text-center">
+                        <a routerLink="angular-datatable" routerLinkActive="active" class="pointer">+ Angular
+                            DataTable</a>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <ag-grid-angular #agGrid class="ag-theme-balham ag-grid-angular" [rowData]="rowData"
-                        [frameworkComponents]="frameworkComponents" [pagination]="true" [floatingFilter]="true"
-                        [animateRows]="true" [rowSelection]="rowSelection" (gridReady)="onGridReady($event)"
-                        [pagination]="true" [paginationPageSize]="paginationPageSize" [columnDefs]="columnDefs"
-                        [domLayout]="domLayout">
-                    </ag-grid-angular>
+                    <div class="col-md-4 text-center">
+                        <a routerLinkActive="active" class="pointer">+ Prime NG</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- #endregion -->
+
+<div class="card m-4">
+    <div class="card-body px-lg-5 pt-0">
+        <router-outlet></router-outlet>
+    </div>
+</div>

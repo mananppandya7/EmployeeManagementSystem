@@ -1,5 +1,5 @@
 <section class="forms">
-    <div class="container-fluid">
+    <div class="container-class">
         <!-- #region CARD -->
         <div class="card">
             <div class="card-close">
@@ -30,14 +30,16 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.firstName.errors">
                                                 <i class="fa fa-user"
-                                                    [class.red-icon]="submitted && f.firstName.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.firstName.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="hidden" formControlName="employeeId">
                                         <input type="text" formControlName="firstName" class="form-control"
                                             placeholder="Enter Firstname"
                                             [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
                                         <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                            <div *ngIf="f.firstName.errors.required">First Name is required
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -71,13 +73,15 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.fatherName.errors">
                                                 <i class="fa fa-user"
-                                                    [class.red-icon]="submitted && f.fatherName.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.fatherName.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="text" formControlName="fatherName" class="form-control"
                                             placeholder="Enter Father's Name"
                                             [ngClass]="{ 'is-invalid': submitted && f.fatherName.errors }">
                                         <div *ngIf="submitted && f.fatherName.errors" class="invalid-feedback">
-                                            <div *ngIf="f.fatherName.errors.required">Father's Name is required</div>
+                                            <div *ngIf="f.fatherName.errors.required">Father's Name is required
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +100,8 @@
                                             [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                             <div *ngIf="f.email.errors.required">Email address is required</div>
-                                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                            <div *ngIf="f.email.errors.email">Email must be a valid email
+                                                address</div>
                                         </div>
                                     </div>
                                 </div>
@@ -112,13 +117,15 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.dateOfBirth.errors">
                                                 <i class="fa fa-calendar"
-                                                    [class.red-icon]="submitted && f.dateOfBirth.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.dateOfBirth.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="date" formControlName="dateOfBirth" class="form-control pointer"
                                             placeholder="Enter DOB" [max]="defaultService.getToday()"
                                             [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }">
                                         <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
-                                            <div *ngIf="f.dateOfBirth.errors.required">Date Of Birth is required</div>
+                                            <div *ngIf="f.dateOfBirth.errors.required">Date Of Birth is required
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -130,13 +137,15 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.dateOfJoining.errors">
                                                 <i class="fa fa-calendar"
-                                                    [class.red-icon]="submitted && f.dateOfJoining.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.dateOfJoining.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="date" formControlName="dateOfJoining" class="form-control pointer"
                                             placeholder="Enter DOJ" [max]="defaultService.getToday()"
                                             [ngClass]="{ 'is-invalid': submitted && f.dateOfJoining.errors }">
                                         <div *ngIf="submitted && f.dateOfJoining.errors" class="invalid-feedback">
-                                            <div *ngIf="f.dateOfJoining.errors.required">Date Of Joining is required
+                                            <div *ngIf="f.dateOfJoining.errors.required">Date Of Joining is
+                                                required
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +162,8 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.department.errors">
                                                 <i class="fa fa-building"
-                                                    [class.red-icon]="submitted && f.department.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.department.errors"></i>
+                                            </div>
                                         </div>
 
                                         <select class="form-control pointer" formControlName="department"
@@ -177,7 +187,8 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.designation.errors">
                                                 <i class="fa fa-plane"
-                                                    [class.red-icon]="submitted && f.designation.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.designation.errors"></i>
+                                            </div>
                                         </div>
 
                                         <select class="form-control pointer" formControlName="designation"
@@ -295,13 +306,15 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.contactNumber.errors">
                                                 <i class="fa fa-phone"
-                                                    [class.red-icon]="submitted && f.contactNumber.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.contactNumber.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="number" formControlName="contactNumber" class="form-control"
                                             placeholder="Enter Contact No."
                                             [ngClass]="{ 'is-invalid': submitted && f.contactNumber.errors }">
                                         <div *ngIf="submitted && f.contactNumber.errors" class="invalid-feedback">
-                                            <div *ngIf="f.contactNumber.errors.required">Contact Number is required
+                                            <div *ngIf="f.contactNumber.errors.required">Contact Number is
+                                                required
                                             </div>
                                             <div *ngIf="f.contactNumber.errors?.Max"> Max 10 digit </div>
                                         </div>
@@ -392,7 +405,8 @@
                                             [ngClass]="{ 'is-invalid': submitted && f.bloodGroup.errors }">
                                             <option value="">-- Select --</option>
                                             <option *ngFor="let bloodgroup of bloodgroups"
-                                                value="{{ bloodgroup.bloodGroupId }}">{{ bloodgroup.bloodGroupName }}
+                                                value="{{ bloodgroup.bloodGroupId }}">
+                                                {{ bloodgroup.bloodGroupName }}
                                             </option>
                                         </select>
                                         <div *ngIf="submitted && f.bloodGroup.errors" class="invalid-feedback">
@@ -413,7 +427,8 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.identityType.errors">
                                                 <i class="fa fa-address-card"
-                                                    [class.red-icon]="submitted && f.identityType.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.identityType.errors"></i>
+                                            </div>
                                         </div>
 
                                         <select class="form-control pointer" formControlName="identityType"
@@ -424,7 +439,8 @@
                                                 {{ identity.name }}</option>
                                         </select>
                                         <div *ngIf="submitted && f.identityType.errors" class="invalid-feedback">
-                                            <div *ngIf="f.identityType.errors.required">Identity Type is required
+                                            <div *ngIf="f.identityType.errors.required">Identity Type is
+                                                required
                                             </div>
                                         </div>
                                     </div>
@@ -437,13 +453,15 @@
                                             <div class="input-group-text"
                                                 [class.red-div]="submitted && f.identityNumber.errors">
                                                 <i class="fa fa-id-badge"
-                                                    [class.red-icon]="submitted && f.identityNumber.errors"></i></div>
+                                                    [class.red-icon]="submitted && f.identityNumber.errors"></i>
+                                            </div>
                                         </div>
                                         <input type="text" formControlName="identityNumber" class="form-control"
                                             placeholder="Enter {{identityTypeStr}} Number"
                                             [ngClass]="{ 'is-invalid': submitted && f.identityNumber.errors }">
                                         <div *ngIf="submitted && f.identityNumber.errors" class="invalid-feedback">
-                                            <div *ngIf="f.identityNumber.errors.required">Identity Number is required
+                                            <div *ngIf="f.identityNumber.errors.required">Identity Number is
+                                                required
                                             </div>
                                         </div>
                                     </div>

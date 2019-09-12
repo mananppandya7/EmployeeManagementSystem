@@ -17,7 +17,6 @@ export class EmployeeComponent implements OnInit {
 
   //#region EVENTS & METHODS
   ngOnInit() {
-
   }
   //#endregion
 }

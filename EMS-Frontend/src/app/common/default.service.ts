@@ -17,12 +17,13 @@ export class DefaultService {
   designations: Designation[];
   pageHeaderChanged = new BehaviorSubject('Dashboard');
   logIn = new Subject<boolean>();
+  agGridRouterLinkActive: string;
   //#endregion
 
   //#region  CONSTRUCTOR
   constructor() { }
   //#endregion
-  
+
 
 
   //#region EVENTS & METHODS

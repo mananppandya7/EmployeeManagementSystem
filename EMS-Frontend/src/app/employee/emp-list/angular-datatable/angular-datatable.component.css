@@ -1,0 +1,44 @@
+@import '../../../../../node_modules/datatables.net-dt/css/jquery.dataTables.css';
+
+.ag-table{
+    background-color: white !important;
+}
+
+ tbody td,thead th{
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    text-align: center;
+    font-size: smaller;
+  }
+
+  th:nth-last-child(1),td:nth-last-child(1){
+    position:sticky;
+    right:0px;
+}
+
+th:nth-last-child(2),td:nth-last-child(2){
+  position:sticky;
+  right:76px ;
+}
+
+th:nth-last-child(1),th:nth-last-child(2){
+    background-color:white;
+  }
+
+td:nth-last-child(1),td:nth-last-child(2){
+  background-color:white;
+  text-align: center;
+ }
+
+ .icon_edit{
+     color:blue;
+ }
+
+ .icon_delete{
+     color:red;
+ }
+
+ img{
+   height:18px;
+ }

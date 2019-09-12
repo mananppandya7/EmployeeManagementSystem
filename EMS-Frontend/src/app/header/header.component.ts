@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { AuthService } from 'angularx-social-login';
+
 import { DefaultService } from '../common/default.service';
-import { AuthorizationComponent } from '../authorization/authorization.component';
 
 @Component({
   selector: 'app-header',
@@ -14,15 +15,15 @@ export class HeaderComponent implements OnInit {
   //#endregion
 
   //#region CONSTRUCTOR
-  constructor(private defaultService: DefaultService) { }
+  constructor(private defaultService: DefaultService, private socialAuthService: AuthService) { }
   //#endregion
 
   //#region EVENTS & METHODS
   ngOnInit() {
-
     let token = localStorage.getItem('token');
+    let socialLogin = localStorage.getItem('socialLoginToken');
 
-    if (token != null) {
+    if (token !== null || socialLogin !== null) {
       this.isLoggedIn = true;
     }
   }
@@ -33,18 +34,22 @@ export class HeaderComponent implements OnInit {
     //this.isLoggedIn = false;
   }
 
-  // Display confirmation message on logout
+  // Based on confirmation logout user.
   onLogout() {
     let confirmMsg = confirm('Are you sure you want to logout?');
+    let token = localStorage.getItem('token');
 
     if (confirmMsg) {
-      localStorage.removeItem('token');
+      if (token != null)
+        localStorage.removeItem('token');
+      else {
+        this.socialAuthService.signOut();
+        localStorage.removeItem('socialLoginToken');
+      }
+
       this.isLoggedIn = false;
-      //this.defaultService.logIn.next(true);
-      //this.defaultService.logIn.complete();
-    } else
-      return;
+    } else return;
   }
-  
+
   //#endregion
 }
