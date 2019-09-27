@@ -9,6 +9,7 @@ import { EmployeeService } from '../../employee.service';
 import { ButtonRenderedComponent } from '../../button-rendered/button-rendered.component';
 import { ImageRenderedComponent } from '../../../employee/image-rendered/image-rendered.component';
 import { DefaultService } from 'src/app/common/default.service';
+import { EMSConstants } from 'src/app/common/ems.constants';
 
 
 @Component({
@@ -183,12 +184,29 @@ export class AgGridComponent implements OnInit {
       width: 150,
     },
     {
+      headerName: 'Detail',
+      cellRenderer: 'buttonRendered',
+      cellRendererParams: {
+        onClick: this.onDetail.bind(this),
+        fa: 'fa fa-info-circle',
+        iconClass: 'detail-icon'
+      },
+      cellStyle: function(params) {
+        return { "text-align": "center" };
+      },
+      width: 56,
+      pinned: "right",
+    },
+    {
       headerName: 'Edit',
       cellRenderer: 'buttonRendered',
       cellRendererParams: {
         onClick: this.onEdit.bind(this),
         fa: 'fa fa-edit',
         iconClass: 'edit-icon'
+      },
+      cellStyle: function(params) {
+        return { "text-align": "center" };
       },
       width: 50,
       pinned: "right",
@@ -200,6 +218,9 @@ export class AgGridComponent implements OnInit {
         onClick: this.onDelete.bind(this),
         fa: 'fa fa-trash',
         iconClass: 'delete-icon'
+      },
+      cellStyle: function(params) {
+        return { "text-align": "center" };
       },
       width: 65,
       pinned: "right",
@@ -230,6 +251,11 @@ export class AgGridComponent implements OnInit {
 
   onPageSizeChanged(event) {
     this.gridApi.paginationSetPageSize(Number(event.target.value));
+  }
+
+  onDetail(event) {
+    this.employeeService.backURL.next(EMSConstants.agGrid);
+    this.router.navigate(['detail', event.rowData.employeeId], { relativeTo: this.activeRouter });
   }
 
   onEdit(event) {

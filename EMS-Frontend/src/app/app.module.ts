@@ -33,6 +33,7 @@ import { EMSConstants } from './common/ems.constants';
 import { AgGridComponent } from './employee/emp-list/ag-grid/ag-grid.component';
 import { AngularDatatableComponent } from './employee/emp-list/angular-datatable/angular-datatable.component';
 import { ImageRenderedComponent } from './employee/image-rendered/image-rendered.component';
+import { EmpDetailComponent } from './employee/emp-detail/emp-detail.component';
 
 // Secret Keys for google & Facebook
 const config = new AuthServiceConfig([
@@ -66,7 +67,8 @@ const config = new AuthServiceConfig([
     AgGridComponent,
     AngularDatatableComponent,
     ImageRenderedComponent,
-    LoginComponent
+    LoginComponent,
+    EmpDetailComponent
   ],
   imports: [
     BrowserModule,

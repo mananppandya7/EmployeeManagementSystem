@@ -191,8 +191,6 @@ export class AddEditEmpComponent implements OnInit {
       });
       // Get designation list.
       this.designations = this.defaultService.getDesignations(event, emp.departmentId.toString());
-      // To get identity type string e.g. Aadhaar Card, License, PAN Card etc.
-      this.identityTypeStr = this.defaultService.getIdentityType(+emp.identityType);
     });
   }
 

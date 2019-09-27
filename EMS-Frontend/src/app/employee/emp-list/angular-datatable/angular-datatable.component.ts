@@ -8,6 +8,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from '../../employee.service';
 import { DefaultService } from 'src/app/common/default.service';
+import { EMSConstants } from '../../../common/ems.constants';
 
 @Component({
   selector: 'app-angular-datatable',
@@ -57,6 +58,12 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Unsubscribe subscription.
     this.dtTrigger.unsubscribe();
+  }
+
+  // To see an Employee Detail
+  onDetailClick(employeeId: number) {
+    this.employeeService.backURL.next(EMSConstants.angularDataTable);
+    this.router.navigate([`../detail/${employeeId}`], { relativeTo: this.activeRoute });
   }
 
   // To Edit an employee.

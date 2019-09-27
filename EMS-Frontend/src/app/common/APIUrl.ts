@@ -14,4 +14,8 @@ export class APIUrl {
     public static readonly authorizeAdmin = `${APIUrl.BaseURL}Authentication/AuthorizeAdmin`;
     public static readonly authorizeUser = `${APIUrl.BaseURL}Authentication/AuthorizeUser`;
     //#endregion
+
+    //#region EMPLOYEE
+    public static readonly getAllEmployees = `${APIUrl.BaseURL}employee`;
+    //#endregion
 }

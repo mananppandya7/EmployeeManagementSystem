@@ -40,6 +40,7 @@
                 <th>Blood Group</th>
                 <th>Identity Type</th>
                 <th>Identity Number</th>
+                <th>Detail</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -63,6 +64,8 @@
                 <td><img src="../../../../assets/img/blood_group/{{ emp.bloodGroup }}"></td>
                 <td>{{ emp.identityType }}</td>
                 <td>{{ emp.identityNumber }}</td>
+                <td><a (click)="onDetailClick(emp.employeeId)"><i class="fa fa-info-circle fa-lg icon_detail pointer"></i></a>
+                </td>
                 <td><a (click)="onEditClick(emp.employeeId)"><i class="fa fa-edit fa-lg icon_edit pointer"></i></a>
                 </td>
                 <td><a (click)="onDeleteClick(content,emp,rIndex)">

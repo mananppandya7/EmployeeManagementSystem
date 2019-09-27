@@ -22,6 +22,20 @@ th:nth-last-child(2),td:nth-last-child(2){
   right:76px ;
 }
 
+th:nth-last-child(3),td:nth-last-child(3){
+  position:sticky;
+  right:135px;
+}
+
+th:nth-last-child(1),th:nth-last-child(3){
+  background-color:white;
+}
+
+td:nth-last-child(1),td:nth-last-child(3){
+  background-color:white;
+  text-align: center;
+ }
+
 th:nth-last-child(1),th:nth-last-child(2){
     background-color:white;
   }
@@ -29,6 +43,10 @@ th:nth-last-child(1),th:nth-last-child(2){
 td:nth-last-child(1),td:nth-last-child(2){
   background-color:white;
   text-align: center;
+ }
+
+ .icon_detail{
+   color: #796AEE;
  }
 
  .icon_edit{
