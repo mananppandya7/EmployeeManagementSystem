@@ -33,12 +33,16 @@ export class EmpDetailComponent implements OnInit {
     });
 
     this.employeeService.backURL.subscribe(gridType => {
+      
       switch (gridType) {
         case EMSConstants.agGrid:
           this.backURL = `../../${EMSConstants.agGrid}`;
           break;
         case EMSConstants.angularDataTable:
           this.backURL = `../../${EMSConstants.angularDataTable}`;
+          break;
+       case EMSConstants.primeNG:
+          this.backURL = `../../${EMSConstants.primeNG}`;
           break;
       }
     });

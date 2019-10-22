@@ -13,5 +13,6 @@ export class EMSConstants {
     //#region EMPLOYEE GRID TYPES
     public static readonly agGrid = 'ag-Grid';
     public static readonly angularDataTable = 'angular-datatable';
+    public static readonly primeNG = 'prime-ng';
     //#endregion
 }

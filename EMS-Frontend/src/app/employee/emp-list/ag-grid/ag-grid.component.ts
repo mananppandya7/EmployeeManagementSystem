@@ -55,14 +55,14 @@ export class AgGridComponent implements OnInit {
   //#region  AG-GRID COLUMNS
   columnDefs = [
     {
-      headerName: 'First Name',
+      headerName: 'FirstName',
       field: 'firstName',
       sortable: true,
       filter: "text",
       width: 150,
     },
     {
-      headerName: 'Last Name',
+      headerName: 'LastName',
       field: 'lastName',
       sortable: true,
       filter: "text",
@@ -75,7 +75,7 @@ export class AgGridComponent implements OnInit {
       filter: "text",
     },
     {
-      headerName: "Date Of Birth",
+      headerName: "DateOfBirth",
       field: 'dateOfBirth',
       sortable: true,
       filter: "text",
@@ -85,7 +85,7 @@ export class AgGridComponent implements OnInit {
       }
     },
     {
-      headerName: "Date Of Joining",
+      headerName: "DateOfJoining",
       field: 'dateOfJoining',
       sortable: true,
       filter: "text",
@@ -137,7 +137,7 @@ export class AgGridComponent implements OnInit {
       width: 150,
     },
     {
-      headerName: "Contact Number",
+      headerName: "ContactNumber",
       field: 'contactNumber',
       sortable: true,
       filter: "text",
@@ -151,14 +151,14 @@ export class AgGridComponent implements OnInit {
       width: 150,
     },
     {
-      headerName: "Marital Status",
+      headerName: "MaritalStatus",
       field: 'maritalStatus',
       sortable: true,
       filter: "text",
       width: 150,
     },
     {
-      headerName: "Blood Group",
+      headerName: "BloodGroup",
       field: 'bloodGroup',
       sortable: true,
       filter: "text",
@@ -170,14 +170,14 @@ export class AgGridComponent implements OnInit {
       },
     },
     {
-      headerName: "Identity Type",
+      headerName: "IdentityType",
       field: 'identityType',
       sortable: true,
       filter: "text",
       width: 150,
     },
     {
-      headerName: "Identity Number",
+      headerName: "IdentityNumber",
       field: 'identityNumber',
       sortable: true,
       filter: "text",

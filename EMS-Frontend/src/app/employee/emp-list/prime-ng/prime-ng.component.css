@@ -1,0 +1,59 @@
+@import '../../../../../node_modules/primeng/resources/themes/nova-light/theme.css';
+@import '../../../../../node_modules/primeng/resources/primeng.min.css';
+@import '../../../../../node_modules/primeicons/primeicons.css'; 
+
+.container-class {
+    width: 100%;
+    margin-top: 2% ;
+} 
+
+select {
+    cursor: pointer;
+}
+
+img {
+  height: 18px;
+}
+
+table {
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+#primeNG th, td {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    width: 150px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px !important;
+}
+
+#primeNG th:nth-last-child(1), #primeNG th:nth-last-child(2), #primeNG td:nth-last-child(1), #primeNG td:nth-last-child(2), #primeNG td:nth-last-child(3), #primeNG th:nth-last-child(3) {
+    width: 70px !important;
+}
+
+#primeNG th:nth-last-child(1), #primeNG td:nth-last-child(1) {
+    position: sticky;
+    right: 0px;
+}
+
+#primeNG th:nth-last-child(2), #primeNG td:nth-last-child(2) {
+  position: sticky;
+  right: 60px ;
+}
+
+#primeNG th:nth-last-child(3), #primeNG td:nth-last-child(3) {
+    position: sticky;
+    right: 128px;
+  }
+
+#primeNG th:nth-last-child(1), #primeNG th:nth-last-child(2), #primeNG th:nth-last-child(3) {
+    background-color:white !important;
+  }
+
+  #primeNG td:nth-last-child(1), #primeNG td:nth-last-child(2), #primeNG td:nth-last-child(3) {
+  background-color:white;
+  text-align: center;
+ }
