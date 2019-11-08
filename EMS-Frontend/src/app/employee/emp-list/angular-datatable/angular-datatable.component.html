@@ -19,7 +19,7 @@
 <!-- #region ANGULAR DATATABLE-->
 <div class="mt-3">
     <button routerLink="../new" class="btn btn-primary float-right mb-2">+ Add New</button>
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    <table id="data_table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
         class="row-border hover table table-striped table-bordered ag-table">
         <thead>
             <tr>
@@ -40,12 +40,13 @@
                 <th>Blood Group</th>
                 <th>Identity Type</th>
                 <th>Identity Number</th>
+                <th>Detail</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let emp of employee; let rIndex = index;">
+            <tr *ngFor="let emp of rowData; let rIndex = index;">
                 <td>{{ emp.firstName }}</td>
                 <td>{{ emp.lastName }}</td>
                 <td>{{ emp.email }}</td>
@@ -63,10 +64,12 @@
                 <td><img src="../../../../assets/img/blood_group/{{ emp.bloodGroup }}"></td>
                 <td>{{ emp.identityType }}</td>
                 <td>{{ emp.identityNumber }}</td>
-                <td><a (click)="onEditClick(emp.employeeId)"><i class="fa fa-edit fa-lg icon_edit pointer"></i></a>
+                <td><a (click)="onDetail(emp.employeeId)"><i class="fa fa-info-circle fa-lg detail-icon pointer"></i></a>
                 </td>
-                <td><a (click)="onDeleteClick(content,emp,rIndex)">
-                        <i class="fa fa-trash fa-lg icon_delete pointer"></i></a>
+                <td><a (click)="onEdit(emp.employeeId)"><i class="fa fa-edit fa-lg edit-icon pointer"></i></a>
+                </td>
+                <td><a (click)="onDelete(content,emp,rIndex)">
+                        <i class="fa fa-trash fa-lg delete-icon pointer"></i></a>
                 </td>
             </tr>
         </tbody>

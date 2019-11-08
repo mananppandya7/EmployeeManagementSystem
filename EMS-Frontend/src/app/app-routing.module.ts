@@ -12,17 +12,21 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { AuthGuard } from './authorization/auth.guard';
 import { AngularDatatableComponent } from './employee/emp-list/angular-datatable/angular-datatable.component';
 import { AgGridComponent } from './employee/emp-list/ag-grid/ag-grid.component';
+import { EmpDetailComponent } from './employee/emp-detail/emp-detail.component';
+import { PrimeNGComponent } from './employee/emp-list/prime-ng/prime-ng.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
   {
     path: 'employee', component: EmployeeComponent, children: [
       { path: 'new', component: AddEditEmpComponent },
+      { path: 'detail/:id', component: EmpDetailComponent },
       {
         path: '', component: EmpListComponent, children: [
           { path: '', component: AgGridComponent },
           { path: 'ag-Grid', redirectTo: '', pathMatch: 'full' },
           { path: 'angular-datatable', component: AngularDatatableComponent },
+          { path: 'prime-ng', component: PrimeNGComponent },
         ]
       },
       { path: ':id', component: AddEditEmpComponent }

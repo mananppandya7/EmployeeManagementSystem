@@ -150,5 +150,13 @@ export class DefaultService {
     return new Date().toISOString().split('T')[0]
   }
 
+  // To create reference for any js.
+  setJSReference(src) {
+    var js = document.createElement("script");
+    js.type = "text/javascript";
+    js.src = src;
+    document.body.appendChild(js);
+  }
+
   //#endregion
 }

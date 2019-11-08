@@ -4,6 +4,9 @@ import { map } from 'rxjs/operators';
 
 import { Employee } from '../models/employee';
 import { DefaultService } from '../common/default.service';
+import { BehaviorSubject, from } from 'rxjs';
+import { EMSConstants } from '../common/ems.constants';
+import { APIUrl } from '../common/APIUrl';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +14,7 @@ import { DefaultService } from '../common/default.service';
 export class EmployeeService {
 
   //#region VARIABLES
-  // Web API URL
-  rootURL = 'http://localhost:54200/api';
+  backURL: BehaviorSubject<string> = new BehaviorSubject<string>(EMSConstants.agGrid); // To manage back functionality in employee detail component.
   //#endregion
 
   //#region  CONSTRUCTOR
@@ -21,7 +23,7 @@ export class EmployeeService {
 
   //#region EVENTS & METHODS
   getAllEmployee() {
-    return this.http.get<Employee[]>(`${this.rootURL}/employee`)
+    return this.http.get<Employee[]>(APIUrl.getAllEmployees)
       .pipe(map(employee => {
         employee.forEach(element => {
           if (element.maritalStatus)
@@ -36,7 +38,7 @@ export class EmployeeService {
   }
 
   getEmployeeById(employeeId: number) {
-    return this.http.get<Employee>(`${this.rootURL}/employee/${employeeId}`).pipe(map(emp => {
+    return this.http.get<Employee>(`${APIUrl.getAllEmployees}/${employeeId}`).pipe(map(emp => {
       let dept = this.defaultService.departments.find(d => d.departmentName === emp.department);
       if (dept)
         emp.departmentId = dept.departmentId;
@@ -65,15 +67,15 @@ export class EmployeeService {
   }
 
   addEmployee(employee: Employee) {
-    return this.http.post<Employee>(`${this.rootURL}/employee`, employee);
+    return this.http.post<Employee>(`${APIUrl.getAllEmployees}`, employee);
   }
 
   editEmployee(employeeId: number, employee: Employee) {
-    return this.http.put<Employee>(`${this.rootURL}/employee/${employeeId}`, employee);
+    return this.http.put<Employee>(`${APIUrl.getAllEmployees}/${employeeId}`, employee);
   }
 
   deleteEmployee(employeeId: number) {
-    return this.http.delete<Employee>(`${this.rootURL}/employee/${employeeId}`);
+    return this.http.delete<Employee>(`${APIUrl.getAllEmployees}/${employeeId}`);
   }
   //#endregion
 }

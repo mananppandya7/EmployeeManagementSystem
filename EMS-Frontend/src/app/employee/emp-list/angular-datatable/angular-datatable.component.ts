@@ -8,6 +8,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from '../../employee.service';
 import { DefaultService } from 'src/app/common/default.service';
+import { EMSConstants } from '../../../common/ems.constants';
 
 @Component({
   selector: 'app-angular-datatable',
@@ -22,10 +23,10 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
   dtElement: DataTableDirective;
 
   dtOptions: DataTables.Settings = {};
-  employee: Employee[] = [];
+  rowData: Employee[] = [];
   dtTrigger: Subject<any> = new Subject();
   private closeResult: string;
-  //#endregion
+  //#endregion 
 
   //#region  CONSTRUCTOR
   constructor(
@@ -49,7 +50,7 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
       scrollX: true,
     };
     this.employeeService.getAllEmployee().subscribe(employee => {
-      this.employee = employee;
+      this.rowData = employee;
       this.dtTrigger.next();
     });
   }
@@ -59,20 +60,26 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
+  // To see an Employee Detail
+  onDetail(employeeId: number) {
+    this.employeeService.backURL.next(EMSConstants.angularDataTable);
+    this.router.navigate([`../detail/${employeeId}`], { relativeTo: this.activeRoute });
+  }
+
   // To Edit an employee.
-  onEditClick(id: number) {
+  onEdit(id: number) {
     this.router.navigate(['../' + id], { relativeTo: this.activeRoute });
   }
 
   // To Delete an employee.
-  onDeleteClick(content, employee: any, index: number) {
+  onDelete(content, employee: any, index: number) {
     this.modalService.open(content).result.then((result) => {
       this.employeeService.deleteEmployee(employee.employeeId).subscribe(emp => {
         this.toastr.success(`Employee (${emp.firstName + ' ' + emp.lastName}) deleted successfully.`);
         // Remove deleted row.
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           dtInstance.destroy();
-          this.employee.splice(index);
+          this.rowData.splice(index,1);
           this.dtTrigger.next();
         });
       }, error => {
@@ -84,14 +91,14 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
     });
   }
 
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
   //#endregion
 }

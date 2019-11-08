@@ -3,3 +3,18 @@
 .pointer { 
     cursor: pointer !important;
 }
+
+/* Detail Icon - Violet */
+.detail-icon{
+    color: #796AEE;
+}
+
+/* Edit Icon - Blue */
+.edit-icon{
+    color:blue;
+}
+
+/* Delete Icon - Red */
+.delete-icon{
+    color: red;
+}

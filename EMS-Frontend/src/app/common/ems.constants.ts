@@ -9,4 +9,10 @@ export class EMSConstants {
     //#region SOCIAL-LOGIN MESSAGES
     public static readonly LogInCancelReason = 'User cancelled login or did not fully authorize.';
     //#endregion
+
+    //#region EMPLOYEE GRID TYPES
+    public static readonly agGrid = 'ag-Grid';
+    public static readonly angularDataTable = 'angular-datatable';
+    public static readonly primeNG = 'prime-ng';
+    //#endregion
 }

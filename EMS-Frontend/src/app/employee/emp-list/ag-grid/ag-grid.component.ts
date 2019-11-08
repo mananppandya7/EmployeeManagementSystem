@@ -9,6 +9,7 @@ import { EmployeeService } from '../../employee.service';
 import { ButtonRenderedComponent } from '../../button-rendered/button-rendered.component';
 import { ImageRenderedComponent } from '../../../employee/image-rendered/image-rendered.component';
 import { DefaultService } from 'src/app/common/default.service';
+import { EMSConstants } from 'src/app/common/ems.constants';
 
 
 @Component({
@@ -54,14 +55,14 @@ export class AgGridComponent implements OnInit {
   //#region  AG-GRID COLUMNS
   columnDefs = [
     {
-      headerName: 'First Name',
+      headerName: 'FirstName',
       field: 'firstName',
       sortable: true,
       filter: "text",
       width: 150,
     },
     {
-      headerName: 'Last Name',
+      headerName: 'LastName',
       field: 'lastName',
       sortable: true,
       filter: "text",
@@ -74,7 +75,7 @@ export class AgGridComponent implements OnInit {
       filter: "text",
     },
     {
-      headerName: "Date Of Birth",
+      headerName: "DateOfBirth",
       field: 'dateOfBirth',
       sortable: true,
       filter: "text",
@@ -84,7 +85,7 @@ export class AgGridComponent implements OnInit {
       }
     },
     {
-      headerName: "Date Of Joining",
+      headerName: "DateOfJoining",
       field: 'dateOfJoining',
       sortable: true,
       filter: "text",
@@ -136,7 +137,7 @@ export class AgGridComponent implements OnInit {
       width: 150,
     },
     {
-      headerName: "Contact Number",
+      headerName: "ContactNumber",
       field: 'contactNumber',
       sortable: true,
       filter: "text",
@@ -150,14 +151,14 @@ export class AgGridComponent implements OnInit {
       width: 150,
     },
     {
-      headerName: "Marital Status",
+      headerName: "MaritalStatus",
       field: 'maritalStatus',
       sortable: true,
       filter: "text",
       width: 150,
     },
     {
-      headerName: "Blood Group",
+      headerName: "BloodGroup",
       field: 'bloodGroup',
       sortable: true,
       filter: "text",
@@ -169,18 +170,32 @@ export class AgGridComponent implements OnInit {
       },
     },
     {
-      headerName: "Identity Type",
+      headerName: "IdentityType",
       field: 'identityType',
       sortable: true,
       filter: "text",
       width: 150,
     },
     {
-      headerName: "Identity Number",
+      headerName: "IdentityNumber",
       field: 'identityNumber',
       sortable: true,
       filter: "text",
       width: 150,
+    },
+    {
+      headerName: 'Detail',
+      cellRenderer: 'buttonRendered',
+      cellRendererParams: {
+        onClick: this.onDetail.bind(this),
+        fa: 'fa fa-info-circle',
+        iconClass: 'detail-icon'
+      },
+      cellStyle: function(params) {
+        return { "text-align": "center" };
+      },
+      width: 56,
+      pinned: "right",
     },
     {
       headerName: 'Edit',
@@ -189,6 +204,9 @@ export class AgGridComponent implements OnInit {
         onClick: this.onEdit.bind(this),
         fa: 'fa fa-edit',
         iconClass: 'edit-icon'
+      },
+      cellStyle: function(params) {
+        return { "text-align": "center" };
       },
       width: 50,
       pinned: "right",
@@ -200,6 +218,9 @@ export class AgGridComponent implements OnInit {
         onClick: this.onDelete.bind(this),
         fa: 'fa fa-trash',
         iconClass: 'delete-icon'
+      },
+      cellStyle: function(params) {
+        return { "text-align": "center" };
       },
       width: 65,
       pinned: "right",
@@ -230,6 +251,11 @@ export class AgGridComponent implements OnInit {
 
   onPageSizeChanged(event) {
     this.gridApi.paginationSetPageSize(Number(event.target.value));
+  }
+
+  onDetail(event) {
+    this.employeeService.backURL.next(EMSConstants.agGrid);
+    this.router.navigate(['detail', event.rowData.employeeId], { relativeTo: this.activeRouter });
   }
 
   onEdit(event) {
