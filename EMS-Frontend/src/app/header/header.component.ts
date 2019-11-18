@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   constructor(private defaultService: DefaultService, private socialAuthService: AuthService) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     let token = localStorage.getItem('token');
     let socialLogin = localStorage.getItem('socialLoginToken');
@@ -27,7 +27,9 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = true;
     }
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   // Display login page
   onLogin() {
     this.defaultService.logIn.next(false);

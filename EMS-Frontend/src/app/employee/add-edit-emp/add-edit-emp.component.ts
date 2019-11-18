@@ -54,7 +54,7 @@ export class AddEditEmpComponent implements OnInit {
     private router: Router) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     // Get EmployeeId
     this.employeeId = +this.activeRoute.snapshot.params["id"];
@@ -79,7 +79,9 @@ export class AddEditEmpComponent implements OnInit {
       this.onGetEmployeeById(this.employeeId);
     }
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   // Convenience getter for easy access to form fields
   get f() { return this.employeeForm.controls; }
 

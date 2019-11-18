@@ -18,7 +18,7 @@ export class AuthorizationComponent implements OnInit {
   constructor(private defaultService: DefaultService) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     let isToken = localStorage.getItem('token'); // Get token from local storage
     let socialToken = localStorage.getItem('socialLoginToken'); // Get social login token from local storage
@@ -38,5 +38,9 @@ export class AuthorizationComponent implements OnInit {
       }
     }
   }
+  //#endregion
+
+  //#region EVENTS & METHODS
+
   //#endregion
 }

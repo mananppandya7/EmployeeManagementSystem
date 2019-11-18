@@ -1,0 +1,11 @@
+div a:hover {
+    border-bottom: 3px solid #796AEE;
+  }
+  
+  div a.active {
+    border-bottom: 3px solid #796AEE;
+  }
+
+  div a {
+      text-decoration: none;
+  }

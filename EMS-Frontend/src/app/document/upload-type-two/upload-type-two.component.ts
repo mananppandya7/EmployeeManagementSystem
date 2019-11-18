@@ -27,7 +27,7 @@ export class UploadTypeTwoComponent implements OnInit {
   constructor(private documentService: DocumentService, private toastr: ToastrService) { }
   //#endregion
 
-  //#region INIT METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     this.fileName = 'Choose File';
   }

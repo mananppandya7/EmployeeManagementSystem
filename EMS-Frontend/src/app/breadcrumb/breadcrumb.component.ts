@@ -19,7 +19,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   constructor(private defaultService: DefaultService) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     this.subscription = this.defaultService.pageHeaderChanged.subscribe(breadcrumb => {
       if (breadcrumb !== 'Dashboard')
@@ -28,7 +28,9 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
         this.breadcrumb = null;
     });
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

@@ -14,6 +14,11 @@ import { AngularDatatableComponent } from './employee/emp-list/angular-datatable
 import { AgGridComponent } from './employee/emp-list/ag-grid/ag-grid.component';
 import { EmpDetailComponent } from './employee/emp-detail/emp-detail.component';
 import { PrimeNGComponent } from './employee/emp-list/prime-ng/prime-ng.component';
+import { EmsChartsComponent } from './ems-charts/ems-charts.component';
+import { LinechartComponent } from './ems-charts/line-chart/linechart.component';
+import { BarchartComponent } from './ems-charts/bar-chart/barchart.component';
+import { PiechartComponent } from './ems-charts/pie-chart/piechart.component';
+import { PolarareachartComponent } from './ems-charts/polararea-chart/polarareachart.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
@@ -30,6 +35,15 @@ const routes: Routes = [
         ]
       },
       { path: ':id', component: AddEditEmpComponent }
+    ]
+  },
+  {
+    path: 'charts', component: EmsChartsComponent, children: [
+      { path: '', component: LinechartComponent },
+      { path: 'LineChart', redirectTo: '', pathMatch: 'full' },
+      { path: 'BarChart', component: BarchartComponent },
+      { path: 'PieChart', component: PiechartComponent },
+      { path: 'Polarchart', component: PolarareachartComponent }
     ]
   },
   {

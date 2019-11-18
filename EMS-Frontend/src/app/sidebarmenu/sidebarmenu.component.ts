@@ -18,7 +18,7 @@ export class SidebarmenuComponent implements OnInit {
   constructor(private defaultService: DefaultService, private location: Location) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     this.pageHeaderStr = this.location.path().replace('/', '');
 
@@ -28,7 +28,9 @@ export class SidebarmenuComponent implements OnInit {
     this.pageHeaderStr = this.pageHeaderStr.charAt(0).toUpperCase() + this.pageHeaderStr.substring(1);
     this.onMenuClick(this.pageHeaderStr);
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   // For sidebar menu click event
   onMenuClick(pageHeader: string): void {
     this.defaultService.pageHeader(pageHeader);

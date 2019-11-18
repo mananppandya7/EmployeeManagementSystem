@@ -19,9 +19,10 @@ export class PrimeNGComponent implements OnInit {
   rowData: Employee[];
   employee_cols;
   paginator_rows = 10;
-//#endregion
+  private closeResult: string;
+  //#endregion
 
-//#region  CONSTRUCTOR
+  //#region  CONSTRUCTOR
   constructor(
     private defaultService: DefaultService,
     private employeeService: EmployeeService,
@@ -32,9 +33,9 @@ export class PrimeNGComponent implements OnInit {
   ) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
-    this.defaultService.agGridRouterLinkActive = "";
+    this.defaultService.routerLinkActive = "";
 
     this.employee_cols = [
       { field: 'firstName', header: 'FirstName' },
@@ -60,15 +61,16 @@ export class PrimeNGComponent implements OnInit {
       this.rowData = employee;
     });
   }
+//#endregion
 
- // To paginator rows.
+  //#region EVENTS & METHODS
+  // To paginator rows.
   onPageSizeChanged(index: number) {
     this.paginator_rows = index
   }
 
   // To see an Employee Detail.
   onDetail(employeeId: number) {
-    debugger;
     this.employeeService.backURL.next(EMSConstants.primeNG);
     this.router.navigate([`../detail/${employeeId}`], { relativeTo: this.activeRoute });
   }
@@ -90,7 +92,7 @@ export class PrimeNGComponent implements OnInit {
       });
     }, (reason) => {
       // Uncomment below line if you wish to perform custom logic on Modal dismiss.
-      //this.closeResult = this.getDismissReason(reason);
+      // this.closeResult = this.getDismissReason(reason);
     });
   }
 
@@ -104,5 +106,5 @@ export class PrimeNGComponent implements OnInit {
     }
   }
 
-//#endregion
+  //#endregion
 }

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultService } from 'src/app/common/default.service';
+import { DefaultService } from '../common/default.service';
 
 @Component({
-  selector: 'app-emp-list',
-  templateUrl: './emp-list.component.html',
-  styleUrls: ['./emp-list.component.css']
+  selector: 'app-ems-charts',
+  templateUrl: './ems-charts.component.html',
+  styleUrls: ['./ems-charts.component.css']
 })
-export class EmpListComponent implements OnInit {
+
+export class EmsChartsComponent implements OnInit {
 
   //#region VARIABLES
 
@@ -18,6 +19,7 @@ export class EmpListComponent implements OnInit {
 
   //#region LIFECYCLE HOOKS
   ngOnInit() {
+    this.defaultService.setJSReference("src/assets/js/ems.charts.js");
   }
   //#endregion
 

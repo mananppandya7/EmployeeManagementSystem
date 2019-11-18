@@ -15,7 +15,7 @@ export class DocumentComponent implements OnInit {
   constructor() { }
   //#endregion
 
-  //#region INIT METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
 
   }

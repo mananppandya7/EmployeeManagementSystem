@@ -80,7 +80,7 @@ export class UploadTypeOneComponent implements OnInit {
   }
   //#endregion
 
-  //#region INIT METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     this.fileName = "Choose File";
   }

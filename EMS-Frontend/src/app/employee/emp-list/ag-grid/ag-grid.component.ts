@@ -191,7 +191,7 @@ export class AgGridComponent implements OnInit {
         fa: 'fa fa-info-circle',
         iconClass: 'detail-icon'
       },
-      cellStyle: function(params) {
+      cellStyle: function (params) {
         return { "text-align": "center" };
       },
       width: 56,
@@ -205,7 +205,7 @@ export class AgGridComponent implements OnInit {
         fa: 'fa fa-edit',
         iconClass: 'edit-icon'
       },
-      cellStyle: function(params) {
+      cellStyle: function (params) {
         return { "text-align": "center" };
       },
       width: 50,
@@ -219,7 +219,7 @@ export class AgGridComponent implements OnInit {
         fa: 'fa fa-trash',
         iconClass: 'delete-icon'
       },
-      cellStyle: function(params) {
+      cellStyle: function (params) {
         return { "text-align": "center" };
       },
       width: 65,
@@ -232,17 +232,18 @@ export class AgGridComponent implements OnInit {
   rowData: any;
   //#endregion
 
-  //#region EVENTS & METHODS
-
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
 
-    this.defaultService.agGridRouterLinkActive = "active";
+    this.defaultService.routerLinkActive = "active";
 
     this.employeeService.getAllEmployee().subscribe(employee => {
       this.rowData = employee
     });
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   onGridReady(params) {
     this.gridApi = params.api;
     // To auto-height AG-Grid

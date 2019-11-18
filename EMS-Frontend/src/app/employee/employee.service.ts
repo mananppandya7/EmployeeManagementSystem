@@ -77,6 +77,11 @@ export class EmployeeService {
   deleteEmployee(employeeId: number) {
     return this.http.delete<Employee>(`${APIUrl.getAllEmployees}/${employeeId}`);
   }
+
+  // To Bind Chart.
+  getDepartmentChart() {
+   return this.http.get(APIUrl.getDepartmentChart);
+  }
   //#endregion
 }
 

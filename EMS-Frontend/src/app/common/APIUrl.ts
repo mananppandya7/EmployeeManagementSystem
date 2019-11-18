@@ -17,5 +17,6 @@ export class APIUrl {
 
     //#region EMPLOYEE
     public static readonly getAllEmployees = `${APIUrl.BaseURL}employee`;
+    public static readonly getDepartmentChart = `${APIUrl.BaseURL}employee/GetEmployeesByDepartment`;
     //#endregion
 }

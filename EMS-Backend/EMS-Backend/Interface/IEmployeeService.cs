@@ -20,6 +20,8 @@ namespace EMS_Backend.Interface
 
         Task<IList<Employee>> GetAll();
 
+        Task<IList<EmpDeptVM>> GetEmployeesByDepartment();
+
         Task<int> Add(Employee employee);
 
         Task Put(int id, Employee employee);

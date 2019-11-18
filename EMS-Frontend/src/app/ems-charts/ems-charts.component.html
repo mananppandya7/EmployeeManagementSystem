@@ -1,0 +1,30 @@
+<!-- #region CHART-TYPE CARD (e.g. Bar-Chart, Line-Chart, Pie-Chart And PolarArea-Chart etc.) -->
+<div class="card m-4">
+    <div class="card-body px-lg-5 pt-0">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="row mt-3">
+                    <div class="col-md-3 text-center">
+                        <a routerLink="LineChart" class="pointer {{ defaultService.routerLinkActive  }}">+ Line Chart</a>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <a routerLink="BarChart" routerLinkActive="active" class="pointer">+ Bar Chart</a>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <a routerLink="PieChart" routerLinkActive="active" class="pointer">+ Pie Chart</a>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <a routerLink="Polarchart" routerLinkActive="active" class="pointer">+ PolarArea Chart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->
+
+<div class="card m-4">
+    <div class="card-body px-lg-5 pt-0">
+        <router-outlet></router-outlet>
+    </div>
+</div>

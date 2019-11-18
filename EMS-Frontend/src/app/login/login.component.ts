@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
   //#endregion
 
-  //#region METHODS & EVENTS
-
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
 
     this.AddRemoveScript();
@@ -40,6 +39,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.pwdType = 'password';
   }
 
+  ngOnDestroy() {
+    this.AddRemoveScript();
+  }
+  //#endregion
+
+  //#region METHODS & EVENTS
+  
   // Login into EMS
   onLogin(loginForm: NgForm) {
     let userName = loginForm.value['username'];
@@ -101,7 +107,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   //#region PRIVATE METHODS
 
-  // Add .js file to resolve CSS issue in login page. Dynamically load script.
+  // Load javascript dynamically at runtime.
   private loadScript() {
     let body = <HTMLDivElement>document.body;
     let script = document.createElement('script');
@@ -113,24 +119,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     body.appendChild(script);
   }
 
-  ngOnDestroy() {
-    this.AddRemoveScript();
-  }
-  //#endregion
-
-  //#region PRIVATE METHOD
-
-  // add dynamically front.js file for resolving css issue
+  // Add/Remove script dynamically.
   private AddRemoveScript() {
     let frontJS = document.getElementById('dynamicScriptLoad'); // Get dynamically loaded script.
 
-    // here we remove js because of css issue, if we didn't remove it then css will not work properly
+    // Remove script if already loaded to avoid duplication.
     if (frontJS != null)
-      frontJS.remove(); // Remove dynamically loaded script to avoid CSS issue on LogIn page
+      frontJS.remove(); // To avoid console errors on page
 
-    this.loadScript(); // Add script to avoiding CSS issue on LogIn page.
+    this.loadScript(); 
   }
 
   //#endregion
-
 }

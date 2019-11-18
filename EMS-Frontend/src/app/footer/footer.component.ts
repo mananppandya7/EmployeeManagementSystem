@@ -15,9 +15,13 @@ export class FooterComponent implements OnInit {
   constructor() { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
 
   }
+  //#endregion
+
+  //#region EVENTS & METHODS
+
   //#endregion
 }

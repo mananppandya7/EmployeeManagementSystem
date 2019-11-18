@@ -21,7 +21,7 @@ export class EmpDetailComponent implements OnInit {
   constructor(private employeeService: EmployeeService, private activeRoute: ActivatedRoute, private toastr: ToastrService) {}
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
 
     let employeeId: number = +this.activeRoute.snapshot.params['id'];
@@ -47,5 +47,9 @@ export class EmpDetailComponent implements OnInit {
       }
     });
   }
+//#endregion
+
+//#region EVENTS & METHODS
+
   //#endregion
 }

@@ -17,7 +17,7 @@ export class DefaultService {
   designations: Designation[];
   pageHeaderChanged = new BehaviorSubject('Dashboard');
   logIn = new Subject<boolean>();
-  agGridRouterLinkActive: string;
+  routerLinkActive: string;
   //#endregion
 
   //#region  CONSTRUCTOR

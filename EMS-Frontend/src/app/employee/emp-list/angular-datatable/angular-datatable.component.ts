@@ -39,10 +39,9 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
   ) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
-
-    this.defaultService.agGridRouterLinkActive = '';
+    this.defaultService.routerLinkActive = '';
 
     this.dtOptions = {
       order: [],
@@ -54,7 +53,9 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     });
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   ngOnDestroy(): void {
     // Unsubscribe subscription.
     this.dtTrigger.unsubscribe();
@@ -79,7 +80,7 @@ export class AngularDatatableComponent implements OnInit, OnDestroy {
         // Remove deleted row.
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           dtInstance.destroy();
-          this.rowData.splice(index,1);
+          this.rowData.splice(index, 1);
           this.dtTrigger.next();
         });
       }, error => {

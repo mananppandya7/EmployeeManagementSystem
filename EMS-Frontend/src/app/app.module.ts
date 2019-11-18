@@ -36,6 +36,11 @@ import { AngularDatatableComponent } from './employee/emp-list/angular-datatable
 import { ImageRenderedComponent } from './employee/image-rendered/image-rendered.component';
 import { EmpDetailComponent } from './employee/emp-detail/emp-detail.component';
 import { PrimeNGComponent } from './employee/emp-list/prime-ng/prime-ng.component';
+import { EmsChartsComponent } from './ems-charts/ems-charts.component';
+import { LinechartComponent } from './ems-charts/line-chart/linechart.component';
+import { BarchartComponent } from './ems-charts/bar-chart/barchart.component';
+import { PiechartComponent } from './ems-charts/pie-chart/piechart.component';
+import { PolarareachartComponent } from './ems-charts/polararea-chart/polarareachart.component';
 
 // Secret Keys for google & Facebook
 const config = new AuthServiceConfig([
@@ -71,7 +76,12 @@ const config = new AuthServiceConfig([
     ImageRenderedComponent,
     LoginComponent,
     EmpDetailComponent,
-    PrimeNGComponent
+    PrimeNGComponent,
+    EmsChartsComponent,
+    LinechartComponent,
+    BarchartComponent,
+    PiechartComponent,
+    PolarareachartComponent
   ],
   imports: [
     BrowserModule,

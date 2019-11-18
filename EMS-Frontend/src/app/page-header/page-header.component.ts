@@ -20,7 +20,7 @@ export class PageHeaderComponent implements OnInit, OnDestroy {
   constructor(private defaultService: DefaultService, private title: Title) { }
   //#endregion
 
-  //#region EVENTS & METHODS
+  //#region LIFECYCLE HOOKS
   ngOnInit() {
     this.subscription = this.defaultService.pageHeaderChanged.subscribe(header => {
       if (header) {
@@ -33,7 +33,9 @@ export class PageHeaderComponent implements OnInit, OnDestroy {
       this.title.setTitle('EMS-' + this.pageHeader);
     });
   }
+  //#endregion
 
+  //#region EVENTS & METHODS
   // Destroy subscription
   ngOnDestroy() {
     this.subscription.unsubscribe();

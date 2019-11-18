@@ -13,6 +13,8 @@ using EMS_Backend.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System;
 
 namespace EMS_Backend.Services
 {
@@ -63,6 +65,19 @@ namespace EMS_Backend.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        // Get all employee count by department.
+        public async Task<IList<EmpDeptVM>> GetEmployeesByDepartment()
+        {
+            return await _context.Employees
+                     .GroupBy(d => d.Department)
+                     .Select(c => new EmpDeptVM
+                     {
+                         Department = c.First().Department,
+                         EmployeeCount = c.Count()
+                     }).ToListAsync();
+        }
+
         #endregion
     }
 }

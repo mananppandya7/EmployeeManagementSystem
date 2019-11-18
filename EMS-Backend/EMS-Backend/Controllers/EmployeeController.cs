@@ -8,6 +8,7 @@ REVISION HISTORY :
 Name:                 Date:                 Description
 ============================================================================================*/
 
+using System.Net;
 using System.Threading.Tasks;
 using EMS_Backend.Interface;
 using EMS_Backend.Models;
@@ -113,6 +114,18 @@ namespace EMS_Backend.Controllers
             var result = await _service.Delete(employee);
 
             return Ok(employee);
+        }
+
+        /// <summary>
+        /// To get employee count by department.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetEmployeesByDepartment")]
+        public async Task<IActionResult> GetEmployeesByDepartment()
+        {
+            var result = await _service.GetEmployeesByDepartment();       
+
+            return Ok(result);
         }
 
         #endregion
